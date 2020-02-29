@@ -8,12 +8,12 @@ namespace schedule
 {
     class Teacher
     {
-        public string Name { get; set; }
-        public List<Class> Classes { get; set; }
+        public uint Id { get; set; }
+        public string FullName { get; set; }
 
         public override string ToString()
         {
-            return Name;
+            return FullName;
         }
     }
 }

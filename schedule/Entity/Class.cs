@@ -16,10 +16,11 @@ namespace schedule
     }
     class Class
     {
-        public Subject Subject { get; set; }
-        public Group Group { get; set; }
-        public Room Room { get; set; }
-        public string Teacher { get; set; }
+        public uint Id { get; set; }
+        public uint RoomId { get; set; }
+        public uint GroupId { get; set; }
+        public uint SubjectId { get; set; }
+        public uint TeacherId { get; set; }
         public Day Day { get; set; }
         public uint Number { get; set; }
     }

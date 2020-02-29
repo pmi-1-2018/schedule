@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace schedule
 {
-    class Group
+    class Subject
     {
-        public string Specialty { get; set; }
-        public uint Number { get; set; }
+        public uint Id { get; set; }
+        public string Name { get; set; }
+        public Type Type { get; set; }
+
         public override string ToString()
         {
-            return $"{Specialty}-{Number}";
+            return Name;
         }
     }
 }

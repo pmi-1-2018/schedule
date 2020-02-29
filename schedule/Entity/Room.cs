@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace schedule
 {
-    public enum RoomType
+    public enum Type
     {
         Lecture,
         Computer,
@@ -15,7 +15,9 @@ namespace schedule
 
     class Room
     {
-        public RoomType RoomType { get; set; }
+        public uint Id { get; set; }
+        public Type Type { get; set; }
         public uint Number { get; set; }
+        public uint Size { get; set; }
     }
 }

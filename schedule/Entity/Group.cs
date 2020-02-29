@@ -6,20 +6,14 @@ using System.Threading.Tasks;
 
 namespace schedule
 {
-    class Subject
+    class Group
     {
+        public uint Id { get; set; }
         public string Name { get; set; }
-
+        public uint Size { get; set; }
         public override string ToString()
         {
             return Name;
         }
     }
-
-    class Lecture : Subject
-    {
-
-
-    }
-
 }
