@@ -12,6 +12,10 @@ namespace schedule
     {
         static void Main(string[] args)
         {
+            Group g = GroupRepo.CreateGroup(1, "pmi", 19);
+            GroupRepo.Serialize("g.xml", g);
+
+            
         }
     }
 }
