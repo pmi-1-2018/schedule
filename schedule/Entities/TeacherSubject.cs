@@ -3,12 +3,12 @@
 namespace schedule.Entities
 {
     [Serializable]
-    public class Teacher_Subject
+    public class TeacherSubject
     {
         public uint? TeacherId { get; set; }
         public uint? SubjectId { get; set; }
         public uint? Count { get; set; }
 
-        public Teacher_Subject(){}
+        public TeacherSubject(){}
     }
 }
