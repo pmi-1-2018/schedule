@@ -11,6 +11,7 @@ namespace schedule.Entities
         public List<Class> schedule { get; set; }
         public Schedule(List<Room> rooms, List<Class> classes, Dictionary<uint?, Subject> dick)
         {
+            schedule = new List<Class>();
             //розбити на 2 лісти.
             List<Room> LectureRoom =  new List<Room>();
             List<Room> ComputerRoom = new List<Room>();
@@ -29,22 +30,26 @@ namespace schedule.Entities
             {
                 if (dick[c.SubjectId].Type == ClassType.Computer)
                 {
-                    int index = rnd.Next(ComputerRoom.Capacity);
+                    int index = rnd.Next(ComputerRoom.Count);
                     c.RoomId = ComputerRoom[index].Id;
                 }
                 else if (dick[c.SubjectId].Type == ClassType.Lecture)
                 {
-                    int index = rnd.Next(LectureRoom.Capacity);
+                    int index = rnd.Next(LectureRoom.Count);
                     c.RoomId = LectureRoom[index].Id;
                 }
                 else
                 {
-                    int index = rnd.Next(DefaultRoom.Capacity);
+                    int index = rnd.Next(DefaultRoom.Count);
                     c.RoomId = DefaultRoom[index].Id;
                 }
             }
-            int n = 16;
+            int n = 15;
             List<List<Class>> ClassesPerDay = new List<List<Class>>();
+            for (int i = 0; i < n; i++)
+            {
+                ClassesPerDay.Add(new List<Class>());
+            }
             foreach (Class c in classes)
             {
                 List<int> l = new List<int>();
@@ -52,7 +57,7 @@ namespace schedule.Entities
                 for (int i = 0; i < n; i++)
                 {
                     bool can = true;
-                    for (int j = 0; j < ClassesPerDay[i].Capacity; j++)
+                    for (int j = 0; j < ClassesPerDay[i].Count; j++)
                     {
                         if (ClassesPerDay[i][j].GroupId == c.GroupId || ClassesPerDay[i][j].RoomId == c.RoomId || ClassesPerDay[i][j].TeacherId == c.TeacherId)
                         {
@@ -63,14 +68,24 @@ namespace schedule.Entities
                     if (!can)
                         l.Remove(i);
                 }
-                if (l.Capacity != 0)
+                if (l.Count != 0)
                 {
-                    int index = rnd.Next(l.Capacity);
+                    int index = rnd.Next(l.Count);
                     ClassesPerDay[index].Add(c);
                 }
                 else
                 {
+                    int a = 0;
                     //треба перегенерувати.
+                }
+            }
+            for (int i = 0; i < n; i++)
+            {
+                foreach(var cl in ClassesPerDay[i])
+                {
+                    cl.Day = (DayOfWeek)(i / 5);
+                    cl.Number = (uint?)i % 5;
+                    schedule.Add(cl);
                 }
             }
         }
