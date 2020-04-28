@@ -9,14 +9,24 @@ namespace schedule.Entities
     class Schedule
     {
         public List<Class> schedule { get; set; }
-        public Schedule(List<Room> rooms, List<Class> classes, Dictionary<uint?, Subject> dick)
+        public List<Room> Rooms { get; set; }
+        public List<Class> Classes { get; set; }
+        public Dictionary<uint?, Subject> Subjects { get; set; }
+        public Schedule(List<Room> rooms, List<Class> classes, Dictionary<uint?, Subject> subjects)
         {
             schedule = new List<Class>();
+            Rooms = rooms;
+            Classes = classes;
+            Subjects = subjects;
+        }
+
+        public void CreateSchedule()
+        {
             //розбити на 2 лісти.
-            List<Room> LectureRoom =  new List<Room>();
+            List<Room> LectureRoom = new List<Room>();
             List<Room> ComputerRoom = new List<Room>();
-            List<Room> DefaultRoom =  new List<Room>();
-            foreach(Room r in rooms)
+            List<Room> DefaultRoom = new List<Room>();
+            foreach (Room r in Rooms)
             {
                 if (r.Type == ClassType.Lecture)
                     LectureRoom.Add(r);
@@ -26,14 +36,14 @@ namespace schedule.Entities
                     DefaultRoom.Add(r);
             }
             Random rnd = new Random();
-            foreach(Class c in classes)
+            foreach (Class c in Classes)
             {
-                if (dick[c.SubjectId].Type == ClassType.Computer)
+                if (Subjects[c.SubjectId].Type == ClassType.Computer)
                 {
                     int index = rnd.Next(ComputerRoom.Count);
                     c.RoomId = ComputerRoom[index].Id;
                 }
-                else if (dick[c.SubjectId].Type == ClassType.Lecture)
+                else if (Subjects[c.SubjectId].Type == ClassType.Lecture)
                 {
                     int index = rnd.Next(LectureRoom.Count);
                     c.RoomId = LectureRoom[index].Id;
@@ -44,16 +54,36 @@ namespace schedule.Entities
                     c.RoomId = DefaultRoom[index].Id;
                 }
             }
-            int n = 15;
+            int n = 20;
             List<List<Class>> ClassesPerDay = new List<List<Class>>();
             for (int i = 0; i < n; i++)
             {
                 ClassesPerDay.Add(new List<Class>());
             }
-            foreach (Class c in classes)
+            while(true)
+            {
+                if (generate(Classes, n, ClassesPerDay))
+                    break;
+            }
+            for (int i = 0; i < n; i++)
+            {
+                foreach (var cl in ClassesPerDay[i])
+                {
+                    cl.Day = (DayOfWeek)(i / 4 + 1);
+                    cl.Number = (uint?)i % 4 + 1;
+                    schedule.Add(cl);
+                }
+            }
+            ClassRepo.SerializeArray("schedule.xml", schedule.ToArray());
+        }
+
+        private bool generate(List<Class> Classes, int n, List<List<Class>> ClassesPerDay)
+        {
+            Random rnd = new Random();
+            foreach (Class c in Classes)
             {
                 List<int> l = new List<int>();
-                for (int i = 0; i < n; i++) { l.Add(i); }
+                for (int k = 0; k < n; k++) { l.Add(k); }
                 for (int i = 0; i < n; i++)
                 {
                     bool can = true;
@@ -71,23 +101,14 @@ namespace schedule.Entities
                 if (l.Count != 0)
                 {
                     int index = rnd.Next(l.Count);
-                    ClassesPerDay[index].Add(c);
+                    ClassesPerDay[l[index]].Add(c);
                 }
                 else
                 {
-                    int a = 0;
-                    //треба перегенерувати.
+                    return false;
                 }
             }
-            for (int i = 0; i < n; i++)
-            {
-                foreach(var cl in ClassesPerDay[i])
-                {
-                    cl.Day = (DayOfWeek)(i / 5);
-                    cl.Number = (uint?)i % 5;
-                    schedule.Add(cl);
-                }
-            }
+            return true;
         }
     }
 }
