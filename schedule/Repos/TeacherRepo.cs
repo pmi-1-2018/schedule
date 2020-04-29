@@ -26,7 +26,7 @@ namespace schedule.Repos
         public static void Serialize(string fileName, Teacher teacher)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Teacher));
-            using (FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream(fileName, FileMode.Create))
             {
                 serializer.Serialize(fs, teacher);
             }
@@ -34,7 +34,7 @@ namespace schedule.Repos
         public static Teacher Deserialize(string fileName)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Teacher));
-            using (FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream(fileName, FileMode.Open))
             {
                 return (Teacher)serializer.Deserialize(fs);
             }

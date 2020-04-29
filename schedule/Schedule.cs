@@ -3,18 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using schedule.Entities;
+using schedule.Repos;
 
-namespace schedule.Entities
+namespace schedule
 {
     class Schedule
     {
-        public List<Class> schedule { get; set; }
+        public List<Class> ResSchedule { get; set; }
         public List<Room> Rooms { get; set; }
         public List<Class> Classes { get; set; }
         public Dictionary<uint?, Subject> Subjects { get; set; }
+        public List<Group> Groups { get; set; }
+        public List<GroupSubject> GroupSubjects { get; set; }
+        public List<Teacher> Teachers { get; set; }
+        public List<TeacherSubject> TeacherSubjects { get; set; }
         public Schedule(List<Room> rooms, List<Class> classes, Dictionary<uint?, Subject> subjects)
         {
-            schedule = new List<Class>();
+            ResSchedule = new List<Class>();
             Rooms = rooms;
             Classes = classes;
             Subjects = subjects;
@@ -71,10 +77,10 @@ namespace schedule.Entities
                 {
                     cl.Day = (DayOfWeek)(i / 4 + 1);
                     cl.Number = (uint?)i % 4 + 1;
-                    schedule.Add(cl);
+                    ResSchedule.Add(cl);
                 }
             }
-            ClassRepo.SerializeArray("schedule.xml", schedule.ToArray());
+            ClassRepo.SerializeArray("schedule.xml", ResSchedule.ToArray());
         }
 
         private bool generate(List<Class> Classes, int n, List<List<Class>> ClassesPerDay)
@@ -109,6 +115,47 @@ namespace schedule.Entities
                 }
             }
             return true;
+        }
+
+        public void GetData()
+        {
+            Groups = GroupRepo.DeserializeArray("../../Data/groups.xml").ToList();
+            Teachers = TeacherRepo.DeserializeArray("../../Data/teachers.xml").ToList();
+            Rooms = RoomRepo.DeserializeArray("../../Data/rooms.xml").ToList();
+            GroupSubjects = GroupSubjectRepo.DeserializeArray("../../Data/group_subjects.xml").ToList();
+            TeacherSubjects = TeacherSubjectRepo.DeserializeArray("../../Data/teacher_subjects.xml").ToList();
+            var subjects = SubjectRepo.DeserializeArray("../../Data/subjects.xml");
+            foreach(var subject in subjects)
+            {
+                Subjects.Add(subject.Id, subject);
+            }
+        }
+        public void FormClasses()
+        {
+
+        }
+
+        public void GenerateTestData()
+        {
+            Class[] c = new Class[100];
+            for (uint i = 0; i < 10; i++)
+            {
+                for (uint j = 0; j < 10; j++)
+                {
+                    c[i * 10 + j] = ClassRepo.CreateClass(i * 10 + j, 0, j, i, i, DayOfWeek.Sunday, 0);
+                }
+            }
+            ClassRepo.SerializeArray("class.xml", c);
+
+            ClassType[] classType = { ClassType.Lecture, ClassType.Computer, ClassType.Ordinary };
+
+
+            Room[] r = new Room[15];
+            for (uint i = 1; i <= 15; i++)
+            {
+                r[i - 1] = RoomRepo.CreateRoom(i, classType[i % 3], i, 25);
+            }
+            RoomRepo.SerializeArray("room.xml", r);
         }
     }
 }
