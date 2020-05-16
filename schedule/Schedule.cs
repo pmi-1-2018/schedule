@@ -129,7 +129,7 @@ namespace schedule
             {
                 Subjects.Add(subject.Id, subject);
             }
-            Classes = ClassRepo.DeserializeArray("../../Dara/classes.xml").ToList();
+            Classes = ClassRepo.DeserializeArray("../../Data/classes.xml").ToList();
         }
 
         public void GenerateTestData()
