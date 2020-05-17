@@ -1,4 +1,5 @@
 ﻿using System;
+using schedule.Enums;
 
 namespace schedule.Entities
 {

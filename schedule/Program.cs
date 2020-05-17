@@ -5,40 +5,21 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using schedule.Entities;
+using schedule.Enums;
 using schedule.Repos;
 
 namespace schedule
 {
     class Program
     {
-        public class ApplicationContext : DbContext
-        {
-            public DbSet<Class> Classes { get; set; }
-            public DbSet<Group> Groups { get; set; }
-            public DbSet<Room> Rooms { get; set; }
-            public DbSet<Subject> Subjects { get; set; }
-            public DbSet<Teacher> Teachers { get; set; }
-            public DbSet<GroupSubject> GroupSubjects { get; set; }
-            public DbSet<TeacherSubject> TeacherSubjects { get; set; }
-
-            public ApplicationContext()
-            {
-                Database.EnsureCreated();
-            }
-
-            protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            {
-                optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=scheduledb;Username=postgres;Password=1111");
-            }
-        }
         static void Main(string[] args)
         {
-            using(ApplicationContext db = new ApplicationContext())
-            {
-                Class @class = new Class() { Day = DayOfWeek.Friday, GroupId = 1, Id = 1, Number = 1, RoomId = 1, SubjectId = 1, TeacherId = 1 };
-                db.Classes.Add(@class);
-                db.SaveChanges();
-            }
+            //using(ApplicationContext db = new ApplicationContext())
+            //{
+            //    Class @class = new Class() { Day = DayOfWeek.Friday, GroupId = 1, Id = 1, Number = 1, RoomId = 1, SubjectId = 1, TeacherId = 1 };
+            //    db.Classes.Add(@class);
+            //    db.SaveChanges();
+            //}
             //Class[] c = new Class[100];
             //for (uint i = 0; i < 10; i++)
             //{
@@ -70,6 +51,16 @@ namespace schedule
             //Schedule s = new Schedule(oral, cal, dick);
             //s.CreateSchedule();
 
+            Groups g = GroupRepo.CreateGroup("pomui", 5);
+            GroupRepo.AddToDb(g);
+            Teachers t = TeacherRepo.CreateTeacher("Sviatik");
+            TeacherRepo.AddToDb(t);
+            Rooms r = RoomRepo.CreateRoom(ClassType.Lecture, 3, 5);
+            RoomRepo.AddToDb(r);
+            Subjects s = SubjectRepo.CreateSubject("Proga", ClassType.Lecture);
+            SubjectRepo.AddToDb(s);
+            Classes c = ClassRepo.CreateClass(1, 1, 1, 1, DayOfWeek.Wednesday, 1);
+            ClassRepo.AddToDb(c);
 
 
         }

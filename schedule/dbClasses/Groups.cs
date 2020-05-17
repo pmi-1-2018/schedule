@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace schedule
 {
+    [Serializable]
     public partial class Groups
     {
         public Groups()
@@ -17,5 +18,9 @@ namespace schedule
 
         public virtual ICollection<Classes> Classes { get; set; }
         public virtual ICollection<GroupSubjects> GroupSubjects { get; set; }
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

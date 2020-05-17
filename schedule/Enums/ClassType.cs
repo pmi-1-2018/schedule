@@ -1,4 +1,4 @@
-namespace schedule.Entities
+namespace schedule.Enums
 {
     public enum ClassType
     {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace schedule
 {
+    [Serializable]
     public partial class TeacherSubjects
     {
         public long Id { get; set; }

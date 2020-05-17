@@ -4,15 +4,16 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace schedule
 {
-    public partial class scheduledbContext : DbContext
+    public partial class ScheduleDbContext : DbContext
     {
-        public scheduledbContext()
+        public ScheduleDbContext()
         {
         }
 
-        public scheduledbContext(DbContextOptions<scheduledbContext> options)
+        public ScheduleDbContext(DbContextOptions<ScheduleDbContext> options)
             : base(options)
         {
+ 
         }
 
         public virtual DbSet<Classes> Classes { get; set; }
@@ -28,7 +29,7 @@ namespace schedule
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=scheduledb;Username=postgres;Password=1111");
+                optionsBuilder.UseLazyLoadingProxies().UseNpgsql("Host=localhost;Port=5432;Database=scheduledb;Username=postgres;Password=1111");
             }
         }
 
@@ -36,7 +37,7 @@ namespace schedule
         {
             modelBuilder.Entity<Classes>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.Group)
                     .WithMany(p => p.Classes)
@@ -65,7 +66,7 @@ namespace schedule
 
             modelBuilder.Entity<GroupSubjects>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.Group)
                     .WithMany(p => p.GroupSubjects)
@@ -80,22 +81,22 @@ namespace schedule
 
             modelBuilder.Entity<Groups>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
             });
 
             modelBuilder.Entity<Rooms>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
             });
 
             modelBuilder.Entity<Subjects>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
             });
 
             modelBuilder.Entity<TeacherSubjects>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.Subject)
                     .WithMany(p => p.TeacherSubjects)
@@ -110,7 +111,7 @@ namespace schedule
 
             modelBuilder.Entity<Teachers>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
             });
 
             OnModelCreatingPartial(modelBuilder);

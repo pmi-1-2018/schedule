@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using schedule.Enums;
 
 namespace schedule
 {
+    [Serializable]
     public partial class Rooms
     {
         public Rooms()
@@ -11,7 +13,7 @@ namespace schedule
         }
 
         public long Id { get; set; }
-        public int? Type { get; set; }
+        public ClassType Type { get; set; }
         public long? Number { get; set; }
         public long? Size { get; set; }
 

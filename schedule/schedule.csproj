@@ -36,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.4.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.1\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -50,6 +53,9 @@
     </Reference>
     <Reference Include="Microsoft.EntityFrameworkCore.Design, Version=3.1.4.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.EntityFrameworkCore.Design.3.1.4\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.Proxies, Version=3.1.4.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.EntityFrameworkCore.Proxies.3.1.4\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Proxies.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.EntityFrameworkCore.Relational, Version=3.1.4.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.EntityFrameworkCore.Relational.3.1.4\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Relational.dll</HintPath>
@@ -104,6 +110,7 @@
       <HintPath>..\packages\System.ComponentModel.Annotations.4.7.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.7.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
@@ -138,8 +145,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="dbClasses\Classes.cs" />
+    <Compile Include="Enums\ProgramMode.cs" />
     <Compile Include="Entities\Class.cs" />
     <Compile Include="Entities\GroupSubject.cs" />
+    <Compile Include="dbClasses\Groups.cs" />
+    <Compile Include="dbClasses\GroupSubjects.cs" />
+    <Compile Include="dbClasses\Rooms.cs" />
+    <Compile Include="Migrations\20200517134153_InitialMigration.cs" />
+    <Compile Include="Migrations\20200517134153_InitialMigration.designer.cs">
+      <DependentUpon>20200517134153_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\ScheduleDbContextModelSnapshot.cs" />
     <Compile Include="Schedule.cs" />
     <Compile Include="Entities\TeacherSubject.cs" />
     <Compile Include="Repos\ClassRepo.cs" />
@@ -154,8 +171,12 @@
     <Compile Include="Entities\Room.cs" />
     <Compile Include="Entities\Subject.cs" />
     <Compile Include="Entities\Teacher.cs" />
-    <Compile Include="Entities\ClassType.cs" />
+    <Compile Include="Enums\ClassType.cs" />
     <Compile Include="Repos\TeacherRepo.cs" />
+    <Compile Include="dbClasses\ScheduleDbContext.cs" />
+    <Compile Include="dbClasses\Subjects.cs" />
+    <Compile Include="dbClasses\Teachers.cs" />
+    <Compile Include="dbClasses\TeacherSubjects.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

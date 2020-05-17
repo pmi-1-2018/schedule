@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace schedule
 {
+    [Serializable]
     public partial class Teachers
     {
         public Teachers()
@@ -16,5 +17,9 @@ namespace schedule
 
         public virtual ICollection<Classes> Classes { get; set; }
         public virtual ICollection<TeacherSubjects> TeacherSubjects { get; set; }
+        public override string ToString()
+        {
+            return FullName;
+        }
     }
 }
