@@ -1,14 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace schedule.Entities
 {
     [Serializable]
-    public class GroupSubject
+    public partial class GroupSubject
     {
-        public uint? GroupId { get; set; }
-        public uint? SubjectId { get; set; }
-        public uint? Count { get; set; }
+        public long Id { get; set; }
+        public long? GroupId { get; set; }
+        public long? SubjectId { get; set; }
+        public long? Count { get; set; }
 
-        public GroupSubject(){}
+        public virtual Group Group { get; set; }
+        public virtual Subject Subject { get; set; }
+        public GroupSubject()
+        {
+
+        }
     }
 }

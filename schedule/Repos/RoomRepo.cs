@@ -1,33 +1,45 @@
 using System.Xml.Serialization;
-using schedule.Entities;
 using System.IO;
+using System.Linq;
+using System.Collections.Generic;
+using schedule.Entities;
+using schedule.Enums;
 
 namespace schedule.Repos
 {
     class RoomRepo
     {
-        public static Room CreateRoom(uint RoomId, ClassType RoomType, uint RoomNumber, uint RoomSize)
+        private readonly static ScheduleDbContext db;
+        static RoomRepo()
+        {
+            db = new ScheduleDbContext();
+        }
+        public static Room CreateRoom(long RoomId, ClassType RoomType, long RoomNumber, long RoomSize)
         {
             return new Room { Id = RoomId, Type = RoomType, Number = RoomNumber, Size = RoomSize };
         }
-        public static void UpdateRoom(Room room, uint? RoomId = null, ClassType? RoomType = null,
-                                        uint? RoomNumber = null, uint? RoomSize = null)
+        public static Room CreateRoom(ClassType RoomType, long RoomNumber, long RoomSize)
         {
-            room.Id = RoomId ?? room.Id;
-            room.Type = RoomType ?? room.Type;
-            room.Number = RoomNumber ?? room.Number;
-            room.Size = RoomSize ?? room.Size;
+            return new Room { Type = RoomType, Number = RoomNumber, Size = RoomSize };
         }
-        public static uint? GetRoomId(Room room)
+        public static void UpdateRoom(Room room, long RoomId = 0, ClassType? RoomType = null,
+                                        long RoomNumber = 0, long RoomSize = 0)
+        {
+            room.Id = RoomId == 0 ? room.Id : RoomId;
+            room.Type = RoomType ?? room.Type;
+            room.Number = RoomNumber == 0 ? room.Number : RoomNumber;
+            room.Size = RoomSize == 0 ? room.Size : RoomSize;
+        }
+        public static long GetRoomId(Room room)
         {
             return room.Id;
         }
 
-        public static uint? GetRoomNumber(Room room)
+        public static long? GetRoomNumber(Room room)
         {
             return room.Number;
         }
-        public static uint? GetRoomSize(Room room)
+        public static long? GetRoomSize(Room room)
         {
             return room.Size;
         }
@@ -66,6 +78,44 @@ namespace schedule.Repos
             {
                 return (Room[])serializer.Deserialize(fs);
             }
+        }
+
+        public static void AddToDb(Room room)
+        {
+            db.Rooms.Add(room);
+            db.SaveChanges();
+        }
+        public static void RemoveFromDb(Room room)
+        {
+            if (db.Rooms.Contains(room))
+            {
+                db.Rooms.Remove(room);
+            }
+        }
+        public static void RemoveFromDb(long id)
+        {
+            var room = db.Rooms.Where(r => r.Id == id).FirstOrDefault();
+            if (room != null)
+            {
+                db.Rooms.Remove(room);
+            }
+        }
+        public static void UpdateInDb(Room room)
+        {
+            var roomToUpdate = db.Rooms.Where(r => r.Id == room.Id).FirstOrDefault();
+            if (roomToUpdate != null)
+            {
+                db.Rooms.Update(room);
+            }
+        }
+        public static List<Room> GetRoomsFromDb()
+        {
+            return db.Rooms.ToList();
+        }
+
+        public static void SerializeDb(string filename)
+        {
+            SerializeArray(filename, db.Rooms.ToArray());
         }
     }
 }

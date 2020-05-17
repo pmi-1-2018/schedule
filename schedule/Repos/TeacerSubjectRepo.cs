@@ -1,37 +1,61 @@
 using System.Xml.Serialization;
-using schedule.Entities;
 using System.IO;
+using System.Linq;
+using System.Collections.Generic;
+using schedule.Entities;
 
 namespace schedule.Repos
 {
     class TeacherSubjectRepo
     {
-        public static TeacherSubject CreateTeacherSubject(uint TeacherSubjectTeacherId, uint TeacherSubjectSubjectId,
-                                                            uint TeacherSubjectCount)
+        private readonly static ScheduleDbContext db;
+        static TeacherSubjectRepo()
         {
-            return new TeacherSubject
+            db = new ScheduleDbContext();
+        }
+        public static TeacherSubject CreateTeacherSubject(long id, long TeacherSubjectTeacherId, long TeacherSubjectSubjectId,
+                                                            long TeacherSubjectCount)
+        {
+            return new TeacherSubject()
+            {
+                Id = id,
+                TeacherId = TeacherSubjectTeacherId,
+                SubjectId = TeacherSubjectSubjectId,
+                Count = TeacherSubjectCount
+            };
+        }
+        public static TeacherSubject CreateTeacherSubject(long TeacherSubjectTeacherId, long TeacherSubjectSubjectId,
+                                                            long TeacherSubjectCount)
+        {
+            return new TeacherSubject()
             {
                 TeacherId = TeacherSubjectTeacherId,
                 SubjectId = TeacherSubjectSubjectId,
                 Count = TeacherSubjectCount
             };
         }
-        public static void UpdateTeacherSubject(TeacherSubject teacherSubject, uint? TeacherSubjectTeacherId,
-                                                    uint? TeacherSubjectSubjectId, uint? TeacherSubjectCount)
+        public static void UpdateTeacherSubject(TeacherSubject teacherSubject, long TeacherSubjectId = 0, 
+                                                long TeacherSubjectTeacherId = 0, long TeacherSubjectSubjectId = 0,
+                                                long TeacherSubjectCount = 0)
         {
-            teacherSubject.TeacherId = TeacherSubjectTeacherId ?? teacherSubject.TeacherId;
-            teacherSubject.SubjectId = TeacherSubjectSubjectId ?? teacherSubject.SubjectId;
-            teacherSubject.Count = TeacherSubjectCount ?? teacherSubject.Count;
+            teacherSubject.Id = TeacherSubjectId == 0 ? teacherSubject.Id : TeacherSubjectId;
+            teacherSubject.TeacherId = TeacherSubjectTeacherId == 0 ? teacherSubject.TeacherId : TeacherSubjectTeacherId;
+            teacherSubject.SubjectId = TeacherSubjectSubjectId == 0 ? teacherSubject.SubjectId : TeacherSubjectSubjectId;
+            teacherSubject.Count = TeacherSubjectCount == 0 ? teacherSubject.Count : TeacherSubjectCount;
         }
-        public static uint? GetTeacherSubjectTeacherId(TeacherSubject teacherSubject)
+        public static long GetTeacherSubjectId(TeacherSubject teacherSubject)
+        {
+            return teacherSubject.Id;
+        }
+        public static long? GetTeacherSubjectTeacherId(TeacherSubject teacherSubject)
         {
             return teacherSubject.TeacherId;
         }
-        public static uint? GetTeacherSubjectSubjectId(TeacherSubject teacherSubject)
+        public static long? GetTeacherSubjectSubjectId(TeacherSubject teacherSubject)
         {
             return teacherSubject.SubjectId;
         }
-        public static uint? GetTeacherSubjectCount(TeacherSubject teacherSubject)
+        public static long? GetTeacherSubjectCount(TeacherSubject teacherSubject)
         {
             return teacherSubject.Count;
         }
@@ -66,6 +90,44 @@ namespace schedule.Repos
             {
                 return (TeacherSubject[])serializer.Deserialize(fs);
             }
+        }
+
+        public static void AddToDb(TeacherSubject teacherSubject)
+        {
+            db.TeacherSubjects.Add(teacherSubject);
+            db.SaveChanges();
+        }
+        public static void RemoveFromDb(TeacherSubject teacherSubjects)
+        {
+            if (db.TeacherSubjects.Contains(teacherSubjects))
+            {
+                db.TeacherSubjects.Remove(teacherSubjects);
+            }
+        }
+        public static void RemoveFromDb(long id)
+        {
+            var teacherSubject = db.TeacherSubjects.Where(s => s.Id == id).FirstOrDefault();
+            if (teacherSubject != null)
+            {
+                db.TeacherSubjects.Remove(teacherSubject);
+            }
+        }
+        public static void UpdateInDb(TeacherSubject teacherSubject)
+        {
+            var teacherSubjectToUpdate = db.TeacherSubjects.Where(s => s.Id == teacherSubject.Id).FirstOrDefault();
+            if (teacherSubjectToUpdate != null)
+            {
+                db.TeacherSubjects.Update(teacherSubject);
+            }
+        }
+        public static List<TeacherSubject> GetTeacherSubjectsFromDb()
+        {
+            return db.TeacherSubjects.ToList();
+        }
+
+        public static void SerializeDb(string filename)
+        {
+            SerializeArray(filename, db.TeacherSubjects.ToArray());
         }
     }
 }
