@@ -1,15 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace schedule.Entities
 {
     [Serializable]
-    public class TeacherSubject
+    public partial class TeacherSubject
     {
-        public uint? Id { get; set; }
-        public uint? TeacherId { get; set; }
-        public uint? SubjectId { get; set; }
-        public uint? Count { get; set; }
+        public long Id { get; set; }
+        public long? TeacherId { get; set; }
+        public long? SubjectId { get; set; }
+        public long? Count { get; set; }
 
-        public TeacherSubject(){}
+        public virtual Subject Subject { get; set; }
+        public virtual Teacher Teacher { get; set; }
     }
 }

@@ -1,18 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace schedule.Entities
 {
     [Serializable]
-    public class Class
+    public partial class Class
     {
-        public uint? Id { get; set; }
-        public uint? RoomId { get; set; }
-        public uint? GroupId { get; set; }
-        public uint? SubjectId { get; set; }
-        public uint? TeacherId { get; set; }
+        public long Id { get; set; }
+        public long RoomId { get; set; }
+        public long GroupId { get; set; }
+        public long SubjectId { get; set; }
+        public long TeacherId { get; set; }
         public DayOfWeek? Day { get; set; }
-        public uint? Number { get; set; }
-        
-        public Class(){}
+        public long? Number { get; set; }
+
+        public virtual Group Group { get; set; }
+        public virtual Room Room { get; set; }
+        public virtual Subject Subject { get; set; }
+        public virtual Teacher Teacher { get; set; }
+        public Class()
+        {
+          
+        }
     }
 }

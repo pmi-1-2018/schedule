@@ -145,22 +145,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="dbClasses\Classes.cs" />
-    <Compile Include="Enums\ProgramMode.cs" />
     <Compile Include="Entities\Class.cs" />
+    <Compile Include="Enums\ProgramMode.cs" />
+    <Compile Include="Entities\Group.cs" />
     <Compile Include="Entities\GroupSubject.cs" />
-    <Compile Include="dbClasses\Groups.cs" />
-    <Compile Include="dbClasses\GroupSubjects.cs" />
-    <Compile Include="dbClasses\Rooms.cs" />
+    <Compile Include="Entities\Room.cs" />
     <Compile Include="Migrations\20200517134153_InitialMigration.cs" />
     <Compile Include="Migrations\20200517134153_InitialMigration.designer.cs">
       <DependentUpon>20200517134153_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\ScheduleDbContextModelSnapshot.cs" />
     <Compile Include="Schedule.cs" />
-    <Compile Include="Entities\TeacherSubject.cs" />
     <Compile Include="Repos\ClassRepo.cs" />
-    <Compile Include="Entities\Group.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\GroupRepo.cs" />
@@ -168,15 +164,12 @@
     <Compile Include="Repos\RoomRepo.cs" />
     <Compile Include="Repos\SubjectRepo.cs" />
     <Compile Include="Repos\TeacerSubjectRepo.cs" />
-    <Compile Include="Entities\Room.cs" />
-    <Compile Include="Entities\Subject.cs" />
-    <Compile Include="Entities\Teacher.cs" />
     <Compile Include="Enums\ClassType.cs" />
     <Compile Include="Repos\TeacherRepo.cs" />
-    <Compile Include="dbClasses\ScheduleDbContext.cs" />
-    <Compile Include="dbClasses\Subjects.cs" />
-    <Compile Include="dbClasses\Teachers.cs" />
-    <Compile Include="dbClasses\TeacherSubjects.cs" />
+    <Compile Include="DB\ScheduleDbContext.cs" />
+    <Compile Include="Entities\Subject.cs" />
+    <Compile Include="Entities\Teacher.cs" />
+    <Compile Include="Entities\TeacherSubject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

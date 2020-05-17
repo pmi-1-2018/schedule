@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using schedule.Entities;
 
 namespace schedule
 {
@@ -13,16 +14,15 @@ namespace schedule
         public ScheduleDbContext(DbContextOptions<ScheduleDbContext> options)
             : base(options)
         {
- 
         }
 
-        public virtual DbSet<Classes> Classes { get; set; }
-        public virtual DbSet<GroupSubjects> GroupSubjects { get; set; }
-        public virtual DbSet<Groups> Groups { get; set; }
-        public virtual DbSet<Rooms> Rooms { get; set; }
-        public virtual DbSet<Subjects> Subjects { get; set; }
-        public virtual DbSet<TeacherSubjects> TeacherSubjects { get; set; }
-        public virtual DbSet<Teachers> Teachers { get; set; }
+        public virtual DbSet<Class> Classes { get; set; }
+        public virtual DbSet<GroupSubject> GroupSubjects { get; set; }
+        public virtual DbSet<Group> Groups { get; set; }
+        public virtual DbSet<Room> Rooms { get; set; }
+        public virtual DbSet<Subject> Subjects { get; set; }
+        public virtual DbSet<TeacherSubject> TeacherSubjects { get; set; }
+        public virtual DbSet<Teacher> Teachers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -35,81 +35,81 @@ namespace schedule
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Classes>(entity =>
+            modelBuilder.Entity<Class>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.Group)
-                    .WithMany(p => p.Classes)
+                    .WithMany(p => p.Class)
                     .HasForeignKey(d => d.GroupId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Classes_GroupId_fkey");
 
                 entity.HasOne(d => d.Room)
-                    .WithMany(p => p.Classes)
+                    .WithMany(p => p.Class)
                     .HasForeignKey(d => d.RoomId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Classes_RoomId_fkey");
 
                 entity.HasOne(d => d.Subject)
-                    .WithMany(p => p.Classes)
+                    .WithMany(p => p.Class)
                     .HasForeignKey(d => d.SubjectId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Classes_SubjectId_fkey");
 
                 entity.HasOne(d => d.Teacher)
-                    .WithMany(p => p.Classes)
+                    .WithMany(p => p.Class)
                     .HasForeignKey(d => d.TeacherId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Classes_TeacherId_fkey");
             });
 
-            modelBuilder.Entity<GroupSubjects>(entity =>
+            modelBuilder.Entity<GroupSubject>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.Group)
-                    .WithMany(p => p.GroupSubjects)
+                    .WithMany(p => p.GroupSubject)
                     .HasForeignKey(d => d.GroupId)
                     .HasConstraintName("GroupSubjects_GroupId_fkey");
 
                 entity.HasOne(d => d.Subject)
-                    .WithMany(p => p.GroupSubjects)
+                    .WithMany(p => p.GroupSubject)
                     .HasForeignKey(d => d.SubjectId)
                     .HasConstraintName("GroupSubjects_SubjectId_fkey");
             });
 
-            modelBuilder.Entity<Groups>(entity =>
+            modelBuilder.Entity<Group>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
             });
 
-            modelBuilder.Entity<Rooms>(entity =>
+            modelBuilder.Entity<Room>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
             });
 
-            modelBuilder.Entity<Subjects>(entity =>
+            modelBuilder.Entity<Subject>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
             });
 
-            modelBuilder.Entity<TeacherSubjects>(entity =>
+            modelBuilder.Entity<TeacherSubject>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.Subject)
-                    .WithMany(p => p.TeacherSubjects)
+                    .WithMany(p => p.TeacherSubject)
                     .HasForeignKey(d => d.SubjectId)
                     .HasConstraintName("TeacherSubjects_SubjectId_fkey");
 
                 entity.HasOne(d => d.Teacher)
-                    .WithMany(p => p.TeacherSubjects)
+                    .WithMany(p => p.TeacherSubject)
                     .HasForeignKey(d => d.TeacherId)
                     .HasConstraintName("TeacherSubjects_TeacherId_fkey");
             });
 
-            modelBuilder.Entity<Teachers>(entity =>
+            modelBuilder.Entity<Teacher>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
             });

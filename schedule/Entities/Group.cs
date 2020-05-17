@@ -1,15 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace schedule.Entities
 {
     [Serializable]
-    public class Group
+    public partial class Group
     {
-        public uint? Id { get; set; }
-        public string Name { get; set; }
-        public uint? Size { get; set; }
+        public Group()
+        {
+            Class = new HashSet<Class>();
+            GroupSubject = new HashSet<GroupSubject>();
+        }
 
-        public Group(){}
+        public long Id { get; set; }
+        public string Name { get; set; }
+        public long? Size { get; set; }
+
+        public virtual ICollection<Class> Class { get; set; }
+        public virtual ICollection<GroupSubject> GroupSubject { get; set; }
         public override string ToString()
         {
             return Name;
