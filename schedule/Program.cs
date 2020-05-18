@@ -51,18 +51,21 @@ namespace schedule
             //Schedule s = new Schedule(oral, cal, dick);
             //s.CreateSchedule();
 
-            Groups g = GroupRepo.CreateGroup("pomui", 5);
+            Group g = GroupRepo.CreateGroup("pomui", 5);
             GroupRepo.AddToDb(g);
-            Teachers t = TeacherRepo.CreateTeacher("Sviatik");
+            Teacher t = TeacherRepo.CreateTeacher("Sviatik");
             TeacherRepo.AddToDb(t);
-            Rooms r = RoomRepo.CreateRoom(ClassType.Lecture, 3, 5);
+            Room r = RoomRepo.CreateRoom(ClassType.Lecture, 3, 5);
             RoomRepo.AddToDb(r);
-            Subjects s = SubjectRepo.CreateSubject("Proga", ClassType.Lecture);
+            Subject s = SubjectRepo.CreateSubject("Proga", ClassType.Lecture);
             SubjectRepo.AddToDb(s);
-            Classes c = ClassRepo.CreateClass(1, 1, 1, 1, DayOfWeek.Wednesday, 1);
-            ClassRepo.AddToDb(c);
+            //Classes c = ClassRepo.CreateClass(1, 1, 1, 1, DayOfWeek.Wednesday, 1);
+            //ClassRepo.AddToDb(c);
 
-
+            foreach (var item in ClassRepo.GetClassesFromDb())
+            {
+                Console.WriteLine($"{item.Group.Name}");
+            }
         }
     }
 }

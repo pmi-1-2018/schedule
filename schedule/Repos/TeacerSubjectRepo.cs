@@ -1,76 +1,11 @@
 using System.Xml.Serialization;
-using schedule.Entities;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
+using schedule.Entities;
 
 namespace schedule.Repos
 {
-    //class TeacherSubjectRepo
-    //{
-    //    public static TeacherSubject CreateTeacherSubject(uint TeacherSubjectTeacherId, uint TeacherSubjectSubjectId,
-    //                                                        uint TeacherSubjectCount)
-    //    {
-    //        return new TeacherSubject
-    //        {
-    //            TeacherId = TeacherSubjectTeacherId,
-    //            SubjectId = TeacherSubjectSubjectId,
-    //            Count = TeacherSubjectCount
-    //        };
-    //    }
-    //    public static void UpdateTeacherSubject(TeacherSubject teacherSubject, uint? TeacherSubjectTeacherId,
-    //                                                uint? TeacherSubjectSubjectId, uint? TeacherSubjectCount)
-    //    {
-    //        teacherSubject.TeacherId = TeacherSubjectTeacherId ?? teacherSubject.TeacherId;
-    //        teacherSubject.SubjectId = TeacherSubjectSubjectId ?? teacherSubject.SubjectId;
-    //        teacherSubject.Count = TeacherSubjectCount ?? teacherSubject.Count;
-    //    }
-    //    public static uint? GetTeacherSubjectTeacherId(TeacherSubject teacherSubject)
-    //    {
-    //        return teacherSubject.TeacherId;
-    //    }
-    //    public static uint? GetTeacherSubjectSubjectId(TeacherSubject teacherSubject)
-    //    {
-    //        return teacherSubject.SubjectId;
-    //    }
-    //    public static uint? GetTeacherSubjectCount(TeacherSubject teacherSubject)
-    //    {
-    //        return teacherSubject.Count;
-    //    }
-    //    public static void Serialize(string fileName, TeacherSubject teacherSubject)
-    //    {
-    //        XmlSerializer serializer = new XmlSerializer(typeof(TeacherSubject));
-    //        using (FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate))
-    //        {
-    //            serializer.Serialize(fs, teacherSubject);
-    //        }
-    //    }
-    //    public static TeacherSubject Deserialize(string fileName)
-    //    {
-    //        XmlSerializer serializer = new XmlSerializer(typeof(TeacherSubject));
-    //        using (FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate))
-    //        {
-    //            return (TeacherSubject)serializer.Deserialize(fs);
-    //        }
-    //    }
-    //    public static void SerializeArray(string fileName, TeacherSubject[] teacherSubjects)
-    //    {
-    //        XmlSerializer serializer = new XmlSerializer(typeof(TeacherSubject[]));
-    //        using (FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate))
-    //        {
-    //            serializer.Serialize(fs, teacherSubjects);
-    //        }
-    //    }
-    //    public static TeacherSubject[] DeserializeArray(string fileName)
-    //    {
-    //        XmlSerializer serializer = new XmlSerializer(typeof(TeacherSubject[]));
-    //        using (FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate))
-    //        {
-    //            return (TeacherSubject[])serializer.Deserialize(fs);
-    //        }
-    //    }
-    //}
-
     class TeacherSubjectRepo
     {
         private readonly static ScheduleDbContext db;
@@ -78,10 +13,10 @@ namespace schedule.Repos
         {
             db = new ScheduleDbContext();
         }
-        public static TeacherSubjects CreateTeacherSubject(long id, long TeacherSubjectTeacherId, long TeacherSubjectSubjectId,
+        public static TeacherSubject CreateTeacherSubject(long id, long TeacherSubjectTeacherId, long TeacherSubjectSubjectId,
                                                             long TeacherSubjectCount)
         {
-            return new TeacherSubjects()
+            return new TeacherSubject()
             {
                 Id = id,
                 TeacherId = TeacherSubjectTeacherId,
@@ -89,17 +24,17 @@ namespace schedule.Repos
                 Count = TeacherSubjectCount
             };
         }
-        public static TeacherSubjects CreateTeacherSubject(long TeacherSubjectTeacherId, long TeacherSubjectSubjectId,
+        public static TeacherSubject CreateTeacherSubject(long TeacherSubjectTeacherId, long TeacherSubjectSubjectId,
                                                             long TeacherSubjectCount)
         {
-            return new TeacherSubjects()
+            return new TeacherSubject()
             {
                 TeacherId = TeacherSubjectTeacherId,
                 SubjectId = TeacherSubjectSubjectId,
                 Count = TeacherSubjectCount
             };
         }
-        public static void UpdateTeacherSubject(TeacherSubjects teacherSubject, long TeacherSubjectId = 0, 
+        public static void UpdateTeacherSubject(TeacherSubject teacherSubject, long TeacherSubjectId = 0, 
                                                 long TeacherSubjectTeacherId = 0, long TeacherSubjectSubjectId = 0,
                                                 long TeacherSubjectCount = 0)
         {
@@ -108,61 +43,61 @@ namespace schedule.Repos
             teacherSubject.SubjectId = TeacherSubjectSubjectId == 0 ? teacherSubject.SubjectId : TeacherSubjectSubjectId;
             teacherSubject.Count = TeacherSubjectCount == 0 ? teacherSubject.Count : TeacherSubjectCount;
         }
-        public static long GetTeacherSubjectId(TeacherSubjects teacherSubject)
+        public static long GetTeacherSubjectId(TeacherSubject teacherSubject)
         {
             return teacherSubject.Id;
         }
-        public static long? GetTeacherSubjectTeacherId(TeacherSubjects teacherSubject)
+        public static long? GetTeacherSubjectTeacherId(TeacherSubject teacherSubject)
         {
             return teacherSubject.TeacherId;
         }
-        public static long? GetTeacherSubjectSubjectId(TeacherSubjects teacherSubject)
+        public static long? GetTeacherSubjectSubjectId(TeacherSubject teacherSubject)
         {
             return teacherSubject.SubjectId;
         }
-        public static long? GetTeacherSubjectCount(TeacherSubjects teacherSubject)
+        public static long? GetTeacherSubjectCount(TeacherSubject teacherSubject)
         {
             return teacherSubject.Count;
         }
-        public static void Serialize(string fileName, TeacherSubjects teacherSubject)
+        public static void Serialize(string fileName, TeacherSubject teacherSubject)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(TeacherSubjects));
+            XmlSerializer serializer = new XmlSerializer(typeof(TeacherSubject));
             using (FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate))
             {
                 serializer.Serialize(fs, teacherSubject);
             }
         }
-        public static TeacherSubjects Deserialize(string fileName)
+        public static TeacherSubject Deserialize(string fileName)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(TeacherSubjects));
+            XmlSerializer serializer = new XmlSerializer(typeof(TeacherSubject));
             using (FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate))
             {
-                return (TeacherSubjects)serializer.Deserialize(fs);
+                return (TeacherSubject)serializer.Deserialize(fs);
             }
         }
-        public static void SerializeArray(string fileName, TeacherSubjects[] teacherSubjects)
+        public static void SerializeArray(string fileName, TeacherSubject[] teacherSubjects)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(TeacherSubjects[]));
+            XmlSerializer serializer = new XmlSerializer(typeof(TeacherSubject[]));
             using (FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate))
             {
                 serializer.Serialize(fs, teacherSubjects);
             }
         }
-        public static TeacherSubjects[] DeserializeArray(string fileName)
+        public static TeacherSubject[] DeserializeArray(string fileName)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(TeacherSubjects[]));
+            XmlSerializer serializer = new XmlSerializer(typeof(TeacherSubject[]));
             using (FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate))
             {
-                return (TeacherSubjects[])serializer.Deserialize(fs);
+                return (TeacherSubject[])serializer.Deserialize(fs);
             }
         }
 
-        public static void AddToDb(TeacherSubjects teacherSubject)
+        public static void AddToDb(TeacherSubject teacherSubject)
         {
             db.TeacherSubjects.Add(teacherSubject);
             db.SaveChanges();
         }
-        public static void RemoveFromDb(TeacherSubjects teacherSubjects)
+        public static void RemoveFromDb(TeacherSubject teacherSubjects)
         {
             if (db.TeacherSubjects.Contains(teacherSubjects))
             {
@@ -177,7 +112,7 @@ namespace schedule.Repos
                 db.TeacherSubjects.Remove(teacherSubject);
             }
         }
-        public static void UpdateInDb(TeacherSubjects teacherSubject)
+        public static void UpdateInDb(TeacherSubject teacherSubject)
         {
             var teacherSubjectToUpdate = db.TeacherSubjects.Where(s => s.Id == teacherSubject.Id).FirstOrDefault();
             if (teacherSubjectToUpdate != null)
@@ -185,7 +120,7 @@ namespace schedule.Repos
                 db.TeacherSubjects.Update(teacherSubject);
             }
         }
-        public static List<TeacherSubjects> GetTeacherSubjectsFromDb()
+        public static List<TeacherSubject> GetTeacherSubjectsFromDb()
         {
             return db.TeacherSubjects.ToList();
         }
