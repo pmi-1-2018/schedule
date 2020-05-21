@@ -85,6 +85,11 @@ namespace schedule.Repos
             db.Rooms.Add(room);
             db.SaveChanges();
         }
+        public static void AddToDb(List<Room> rooms)
+        {
+            db.Rooms.AddRange(rooms);
+            db.SaveChanges();
+        }
         public static void RemoveFromDb(Room room)
         {
             if (db.Rooms.Contains(room))

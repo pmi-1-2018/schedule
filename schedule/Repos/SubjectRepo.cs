@@ -79,6 +79,11 @@ namespace schedule.Repos
             db.Subjects.Add(subject);
             db.SaveChanges();
         }
+        public static void AddToDb(List<Subject> subjects)
+        {
+            db.Subjects.AddRange(subjects);
+            db.SaveChanges();
+        }
         public static void RemoveFromDb(Subject subject)
         {
             if (db.Subjects.Contains(subject))

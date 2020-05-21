@@ -72,6 +72,11 @@ namespace schedule.Repos
             db.Teachers.Add(teacher);
             db.SaveChanges();
         }
+        public static void AddToDb(List<Teacher> teachers)
+        {
+            db.Teachers.AddRange(teachers);
+            db.SaveChanges();
+        }
         public static void RemoveFromDb(Teacher teacher)
         {
             if (db.Teachers.Contains(teacher))
