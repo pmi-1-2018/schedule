@@ -4,5 +4,6 @@
     {
         Database,
         XML,
+        Both,
     }
 }
