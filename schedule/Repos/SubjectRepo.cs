@@ -14,7 +14,7 @@ namespace schedule.Repos
         {
             db = new ScheduleDbContext();
         }
-        public static Subject CreateSubject(long SubjectId, string SubjectName, ClassType SubjectType)
+        public static Subject CreateSubject(long SubjectId, string SubjectName, ClassType? SubjectType)
         {
             return new Subject { Id = SubjectId, Name = SubjectName, Type = SubjectType };
         }
@@ -114,7 +114,13 @@ namespace schedule.Repos
 
         public static void SerializeDb(string filename)
         {
-            SerializeArray(filename, db.Subjects.ToArray());
+            var subjectsFromDb = db.Subjects.ToArray();
+            var subjectsToSerialize = new Subject[subjectsFromDb.Length];
+            for (int i = 0; i < subjectsToSerialize.Length; i++)
+            {
+                subjectsToSerialize[i] = CreateSubject(subjectsFromDb[i].Id, subjectsFromDb[i].Name, subjectsFromDb[i].Type);
+            }
+            SerializeArray(filename, subjectsToSerialize);
         }
     }
 }

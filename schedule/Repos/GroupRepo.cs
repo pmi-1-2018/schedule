@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using schedule.Entities;
+using System;
 
 namespace schedule.Repos
 {
@@ -113,7 +114,13 @@ namespace schedule.Repos
 
         public static void SerializeDb(string filename)
         {
-            SerializeArray(filename, db.Groups.ToArray());
+            var groupsFromDb = db.Groups.ToArray();
+            var groupsToSerialize = new Group[groupsFromDb.Length];
+            for (int i = 0; i < groupsToSerialize.Length; i++)
+            {
+                groupsToSerialize[i] = CreateGroup(groupsFromDb[i].Id, groupsFromDb[i].Name, (long)groupsFromDb[i].Size);
+            }
+            SerializeArray(filename, groupsToSerialize);
         }
 
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using schedule.Enums;
 
 namespace schedule.Entities
@@ -18,8 +19,11 @@ namespace schedule.Entities
         public string Name { get; set; }
         public ClassType? Type { get; set; }
 
+        [XmlIgnore]
         public virtual ICollection<Class> Class { get; set; }
+        [XmlIgnore]
         public virtual ICollection<GroupSubject> GroupSubject { get; set; }
+        [XmlIgnore]
         public virtual ICollection<TeacherSubject> TeacherSubject { get; set; }
         public override string ToString()
         {

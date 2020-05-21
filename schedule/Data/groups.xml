@@ -2,11 +2,17 @@
 <ArrayOfGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Group>
     <Id>1</Id>
-    <Name>faqfq</Name>
-    <Size>7</Size>
+    <Name>ПМІ-21</Name>
+    <Size>20</Size>
   </Group>
   <Group>
-    <Id>0</Id>
-    <Size xsi:nil="true" />
+    <Id>2</Id>
+    <Name>ПМІ-22</Name>
+    <Size>20</Size>
+  </Group>
+  <Group>
+    <Id>3</Id>
+    <Name>ПМІ-23</Name>
+    <Size>20</Size>
   </Group>
 </ArrayOfGroup>

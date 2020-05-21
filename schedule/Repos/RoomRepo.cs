@@ -14,7 +14,7 @@ namespace schedule.Repos
         {
             db = new ScheduleDbContext();
         }
-        public static Room CreateRoom(long RoomId, ClassType RoomType, long RoomNumber, long RoomSize)
+        public static Room CreateRoom(long RoomId, ClassType RoomType, long? RoomNumber, long? RoomSize)
         {
             return new Room { Id = RoomId, Type = RoomType, Number = RoomNumber, Size = RoomSize };
         }
@@ -120,7 +120,13 @@ namespace schedule.Repos
 
         public static void SerializeDb(string filename)
         {
-            SerializeArray(filename, db.Rooms.ToArray());
+            var roomsFromDb = db.Rooms.ToArray();
+            var roomsToSerialize = new Room[roomsFromDb.Length];
+            for (int i = 0; i < roomsToSerialize.Length; i++)
+            {
+                roomsToSerialize[i] = CreateRoom(roomsFromDb[i].Id, roomsFromDb[i].Type, roomsFromDb[i].Number, roomsFromDb[i].Size);
+            }
+            SerializeArray(filename, roomsToSerialize);
         }
     }
 }
