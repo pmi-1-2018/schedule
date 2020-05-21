@@ -11,11 +11,11 @@ namespace schedule
 {
     class Schedule
     {
-        public List<Class> ResSchedule { get; set; }
+        public List<Class> ResSchedule { get; set; } = new List<Class>();
         public List<Room> Rooms { get; set; }
-        public List<Class> Classes { get; set; }
-        public Dictionary<long, Subject> DictionaryOfSubjects { get; set; }
-        public Dictionary<long, Group> DictionaryOfGroups { get; set; }
+        public List<Class> Classes { get; set; } = new List<Class>();
+        public Dictionary<long, Subject> DictionaryOfSubjects { get; set; } = new Dictionary<long, Subject>();
+        public Dictionary<long, Group> DictionaryOfGroups { get; set; } = new Dictionary<long, Group>();
         public List<Group> Groups { get; set; }
         public List<Subject> Subjects { get; set; }
         public List<GroupSubject> GroupSubjects { get; set; }
@@ -36,7 +36,7 @@ namespace schedule
         }
         public void CreatingClasses()
         {
-            foreach(var group in Groups)
+            foreach (var group in Groups)
             {
                 DictionaryOfGroups.Add(group.Id, group);
             }
@@ -78,7 +78,7 @@ namespace schedule
             foreach(var item in Classes)
             {
                 string GroupName = DictionaryOfGroups[item.GroupId].Name;
-                long Course = Convert.ToInt64(GroupName[GroupName.Length - 2]);
+                long Course = Convert.ToInt64(GroupName[GroupName.Length - 2]) - 48;
                 if (Course<=3)
                 {
                     FirstGroup.Add(item);
@@ -98,6 +98,11 @@ namespace schedule
 
             this.create(0, FirstGroup);
             this.create(3, SecondGroup);
+
+            if(pm == ProgramMode.Database)
+            {
+                ClassRepo.AddToDb(ResSchedule);
+            }
         }
 
 
@@ -146,7 +151,7 @@ namespace schedule
                 cl.Number += DayShuffle;
                 ResSchedule.Add(cl);
             }
-            ClassRepo.SerializeArray("schedule.xml", ResSchedule.ToArray());
+            //ClassRepo.SerializeArray("schedule.xml", ResSchedule.ToArray());
 
         }
         private bool generate(List<Class> c, int n, List<Class> CalculatedClasses)
@@ -183,7 +188,7 @@ namespace schedule
             //return true;
             for (int i = 0; i < c.Count; i++)
             {
-                int Possible = (2<<n+1)-1;
+                int Possible = (1 << n) - 1;
                 for (int j = 0; j < CalculatedClasses.Count; j++)
                 {
                     if (CalculatedClasses[j].GroupId == c[i].GroupId || CalculatedClasses[j].RoomId == c[i].RoomId || CalculatedClasses[j].TeacherId == c[i].TeacherId)
@@ -191,6 +196,7 @@ namespace schedule
                         Possible &= (~(1 << ((int)c[i].Day * 3 + (int)c[i].Number)));
                     }
                 }
+                //Possible &= (2 << n+1) - 1;
                 if(Possible == 0)
                 {
                     CalculatedClasses.Clear();
@@ -200,9 +206,9 @@ namespace schedule
                 {
                     int count = countSetBits(Possible);
                     int index = rnd.Next(count);
-                    index = findIndex(Possible, index);
-                    c[i].Day = (DayOfWeek)(i / 3 + 1);
-                    c[i].Number = (uint?)i % 3 + 1;
+                    index = findIndex(Possible, index-1);
+                    c[i].Day = (DayOfWeek)(index / 3 + 1);
+                    c[i].Number = (long?)index % 3 + 1;
                     CalculatedClasses.Add(c[i]);
                 }
             }
