@@ -103,6 +103,15 @@ namespace schedule
             {
                 ClassRepo.AddToDb(ResSchedule);
             }
+            else if(pm == ProgramMode.XML)
+            {
+                ClassRepo.SerializeArray("../../Data/classes.xml",ResSchedule.ToArray());
+            }
+            else
+            {
+                ClassRepo.AddToDb(ResSchedule);
+                ClassRepo.SerializeDb("../../Data/classes.xml");
+            }
         }
 
 
