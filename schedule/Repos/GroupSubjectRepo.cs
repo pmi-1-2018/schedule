@@ -96,6 +96,11 @@ namespace schedule.Repos
             db.GroupSubjects.Add(groupSubject);
             db.SaveChanges();
         }
+        public static void AddToDb(List<GroupSubject> groupSubjects)
+        {
+            db.GroupSubjects.AddRange(groupSubjects);
+            db.SaveChanges();
+        }
         public static void RemoveFromDb(GroupSubject groupSubject)
         {
             if (db.GroupSubjects.Contains(groupSubject))
