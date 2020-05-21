@@ -41,6 +41,16 @@ namespace schedule
                 Number = ClassNumber
             };
         }
+        public static Class CreateClass(long ClassGroupId, long ClassSubjectId,
+                                long ClassTeacherId)
+        {
+            return new Class()
+            {
+                GroupId = ClassGroupId,
+                SubjectId = ClassSubjectId,
+                TeacherId = ClassTeacherId,
+            };
+        }
         public static void UpdateClass(Class @class, long ClassId = 0, long ClassRoomId = 0,
                                         long ClassGroupId = 0, long ClassSubjectId = 0,
                                         long ClassTeacherId = 0, DayOfWeek? ClassDay = null, long? ClassNumber = null)
