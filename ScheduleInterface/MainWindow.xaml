@@ -7,14 +7,14 @@
         mc:Ignorable="d"
         Title="Schedule" Height="450" Width="730">
     <Grid>
-        <DataGrid x:Name="dataGridSchedule" HorizontalAlignment="Left" Height="383" Margin="10,10,0,0" VerticalAlignment="Top" Width="525" Grid.ColumnSpan="2"/>
+        <DataGrid x:Name="dataGridSchedule" HorizontalAlignment="Left" Height="383" Margin="10,10,0,0" VerticalAlignment="Top" Width="525" Grid.ColumnSpan="2" ItemsSource="{Binding Classes}"/>
         <Label Content="Creating place:" HorizontalAlignment="Left" Margin="567,10,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="checkBoxDatabase" Content="Database" HorizontalAlignment="Left" Margin="594,41,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="checkBoxFile" Content="File" HorizontalAlignment="Left" Margin="594,61,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="createButton" Content="Create" HorizontalAlignment="Left" Margin="594,81,0,0" VerticalAlignment="Top" Width="75"/>
+        <CheckBox x:Name="checkBoxDatabase" Content="Database" HorizontalAlignment="Left" Margin="594,41,0,0" VerticalAlignment="Top" IsChecked="{Binding IsDatabaseChecked}"/>
+        <CheckBox x:Name="checkBoxFile" Content="File" HorizontalAlignment="Left" Margin="594,61,0,0" VerticalAlignment="Top" IsChecked="{Binding IsFileChecked}"/>
+        <Button x:Name="createButton" Content="Create" HorizontalAlignment="Left" Margin="594,81,0,0" VerticalAlignment="Top" Width="75" Command="{Binding CreateCommand}"/>
         <Label Content="Show from:" HorizontalAlignment="Left" Margin="567,184,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="buttonShow" Content="Show" HorizontalAlignment="Left" Margin="594,255,0,0" VerticalAlignment="Top" Width="75"/>
-        <RadioButton x:Name="radioButtonDatabase" Content="Database" HorizontalAlignment="Left" Margin="594,215,0,0" VerticalAlignment="Top" IsChecked="True"/>
+        <Button x:Name="buttonShow" Content="Show" HorizontalAlignment="Left" Margin="594,255,0,0" VerticalAlignment="Top" Width="75" Command="{Binding ShowCommand}"/>
+        <RadioButton x:Name="radioButtonDatabase" Content="Database" HorizontalAlignment="Left" Margin="594,215,0,0" VerticalAlignment="Top" IsChecked="{Binding RadioButCheck}"/>
         <RadioButton x:Name="radioButtonFile" Content="File" HorizontalAlignment="Left" Margin="594,235,0,0" VerticalAlignment="Top"/>
 
     </Grid>

@@ -1,8 +1,9 @@
-﻿namespace schedule
+﻿namespace schedule.Enums
 {
-    enum ProgramMode
+    public enum ProgramMode
     {
         Database,
         XML,
+        Both,
     }
 }

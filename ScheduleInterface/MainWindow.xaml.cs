@@ -23,6 +23,7 @@ namespace ScheduleInterface
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainWindowViewModel();
         }
     }
 }
