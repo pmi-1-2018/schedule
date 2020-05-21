@@ -24,14 +24,6 @@ namespace schedule
 
         public Schedule(ProgramMode pm)
         {
-            if(pm == ProgramMode.XML)
-            {
-                this.GetDataFromXML();
-            }
-            else
-            {
-                this.GetDataFromDb();
-            }
             this.CreatingClasses();
         }
         public void CreatingClasses()
@@ -92,6 +84,14 @@ namespace schedule
 
         public void CreateSchedule(ProgramMode pm)
         {
+            if (pm == ProgramMode.XML)
+            {
+                this.GetDataFromXML();
+            }
+            else
+            {
+                this.GetDataFromDb();
+            }
             List<Class> FirstGroup = new List<Class>();
             List<Class> SecondGroup = new List<Class>();
             this.Dividing(FirstGroup, SecondGroup);
@@ -151,41 +151,11 @@ namespace schedule
                 cl.Number += DayShuffle;
                 ResSchedule.Add(cl);
             }
-            //ClassRepo.SerializeArray("schedule.xml", ResSchedule.ToArray());
 
         }
         private bool generate(List<Class> c, int n, List<Class> CalculatedClasses)
         {
             Random rnd = new Random();
-            //foreach (Class c in Classes)
-            //{
-            //    List<int> l = new List<int>();
-            //    for (int k = 0; k < n; k++) { l.Add(k); }
-            //    for (int i = 0; i < n; i++)
-            //    {
-            //        bool can = true;
-            //        for (int j = 0; j < ClassesPerDay[i].Count; j++)
-            //        {
-            //            if (ClassesPerDay[i][j].GroupId == c.GroupId || ClassesPerDay[i][j].RoomId == c.RoomId || ClassesPerDay[i][j].TeacherId == c.TeacherId)
-            //            {
-            //                can = false;
-            //                break;
-            //            }
-            //        }
-            //        if (!can)
-            //            l.Remove(i);
-            //    }
-            //    if (l.Count != 0)
-            //    {
-            //        int index = rnd.Next(l.Count);
-            //        ClassesPerDay[l[index]].Add(c);
-            //    }
-            //    else
-            //    {
-            //        return false;
-            //    }
-            //}
-            //return true;
             for (int i = 0; i < c.Count; i++)
             {
                 int Possible = (1 << n) - 1;
@@ -193,10 +163,9 @@ namespace schedule
                 {
                     if (CalculatedClasses[j].GroupId == c[i].GroupId || CalculatedClasses[j].RoomId == c[i].RoomId || CalculatedClasses[j].TeacherId == c[i].TeacherId)
                     {
-                        Possible &= (~(1 << n - 1 - (((int)CalculatedClasses[j].Day-1) * 3 + (int)CalculatedClasses[j].Number - 1)));
+                        Possible &= (~(1 << (((int)CalculatedClasses[j].Day-1) * 3 + (int)CalculatedClasses[j].Number - 1)));
                     }
                 }
-                //Possible &= (2 << n+1) - 1;
                 if(Possible == 0)
                 {
                     CalculatedClasses.Clear();
@@ -204,21 +173,9 @@ namespace schedule
                 }
                 else
                 {
-                    Console.WriteLine($"Test:{i}");
                     int count = countSetBits(Possible);
-                    Console.WriteLine(count);
                     int index = rnd.Next(count-1)+1;
-                    Console.WriteLine(index);
-
-                    int fuckThisShit = Possible;
-                    for (int ff = 0; ff < 15; ff++)
-                    {
-                        Console.Write(Possible & 1);
-                        Possible >>= 1;
-                    }
-                    Console.WriteLine();
-                    index = findIndex(fuckThisShit, index-1);
-                    Console.WriteLine(index);
+                    index = findIndex(Possible, index)-1;
                     c[i].Day = (DayOfWeek)(index / 3 + 1);
                     c[i].Number = (long?)index % 3 + 1;
                     CalculatedClasses.Add(c[i]);
