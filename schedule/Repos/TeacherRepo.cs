@@ -107,7 +107,13 @@ namespace schedule.Repos
 
         public static void SerializeDb(string filename)
         {
-            SerializeArray(filename, db.Teachers.ToArray());
+            var teachersFromDb = db.Teachers.ToArray();
+            var teachersToSerialize = new Teacher[teachersFromDb.Length];
+            for (int i = 0; i < teachersToSerialize.Length; i++)
+            {
+                teachersToSerialize[i] = CreateTeacher(teachersFromDb[i].Id, teachersFromDb[i].FullName);
+            }
+            SerializeArray(filename, teachersToSerialize);
         }
 
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace schedule.Entities
 {
@@ -11,7 +12,9 @@ namespace schedule.Entities
         public long? SubjectId { get; set; }
         public long? Count { get; set; }
 
+        [XmlIgnore]
         public virtual Subject Subject { get; set; }
+        [XmlIgnore]
         public virtual Teacher Teacher { get; set; }
     }
 }

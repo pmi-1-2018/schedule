@@ -13,8 +13,8 @@ namespace schedule.Repos
         {
             db = new ScheduleDbContext();
         }
-        public static GroupSubject CreateGroupSubject(long id, long GroupSubjectGroupId, long GroupSubjectSubjectId,
-                                                        long GroupSubjectCount)
+        public static GroupSubject CreateGroupSubject(long id, long? GroupSubjectGroupId, long? GroupSubjectSubjectId,
+                                                        long? GroupSubjectCount)
         {
             return new GroupSubject
             {
@@ -131,7 +131,13 @@ namespace schedule.Repos
 
         public static void SerializeDb(string filename)
         {
-            SerializeArray(filename, db.GroupSubjects.ToArray());
+            var groupSubjectsFromDb = db.GroupSubjects.ToArray();
+            var groupSubjectsToSerialize = new GroupSubject[groupSubjectsFromDb.Length];
+            for (int i = 0; i < groupSubjectsToSerialize.Length; i++)
+            {
+                groupSubjectsToSerialize[i] = CreateGroupSubject(groupSubjectsFromDb[i].Id, groupSubjectsFromDb[i].GroupId, groupSubjectsFromDb[i].SubjectId, groupSubjectsFromDb[i].Count);
+            }
+            SerializeArray(filename, groupSubjectsToSerialize);
         }
     }
 }

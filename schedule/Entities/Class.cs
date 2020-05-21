@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace schedule.Entities
 {
@@ -14,9 +15,13 @@ namespace schedule.Entities
         public DayOfWeek? Day { get; set; }
         public long? Number { get; set; }
 
+        [XmlIgnore]
         public virtual Group Group { get; set; }
+        [XmlIgnore]
         public virtual Room Room { get; set; }
+        [XmlIgnore]
         public virtual Subject Subject { get; set; }
+        [XmlIgnore]
         public virtual Teacher Teacher { get; set; }
         public Class()
         {

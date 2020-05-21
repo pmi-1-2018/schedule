@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using schedule.Enums;
 
 namespace schedule.Entities
@@ -17,6 +18,7 @@ namespace schedule.Entities
         public long? Number { get; set; }
         public long? Size { get; set; }
 
+        [XmlIgnore]
         public virtual ICollection<Class> Class { get; set; }
     }
 }

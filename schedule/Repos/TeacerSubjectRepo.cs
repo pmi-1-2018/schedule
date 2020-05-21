@@ -13,8 +13,8 @@ namespace schedule.Repos
         {
             db = new ScheduleDbContext();
         }
-        public static TeacherSubject CreateTeacherSubject(long id, long TeacherSubjectTeacherId, long TeacherSubjectSubjectId,
-                                                            long TeacherSubjectCount)
+        public static TeacherSubject CreateTeacherSubject(long id, long? TeacherSubjectTeacherId, long? TeacherSubjectSubjectId,
+                                                            long? TeacherSubjectCount)
         {
             return new TeacherSubject()
             {
@@ -132,7 +132,13 @@ namespace schedule.Repos
 
         public static void SerializeDb(string filename)
         {
-            SerializeArray(filename, db.TeacherSubjects.ToArray());
+            var teacherSubjectsFromDb = db.TeacherSubjects.ToArray();
+            var teacherSubjectsToSerialize = new TeacherSubject[teacherSubjectsFromDb.Length];
+            for (int i = 0; i < teacherSubjectsToSerialize.Length; i++)
+            {
+                teacherSubjectsToSerialize[i] = CreateTeacherSubject(teacherSubjectsFromDb[i].Id, teacherSubjectsFromDb[i].TeacherId, teacherSubjectsFromDb[i].SubjectId, teacherSubjectsFromDb[i].Count);
+            }
+            SerializeArray(filename, teacherSubjectsToSerialize);
         }
     }
 }
