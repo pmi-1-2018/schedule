@@ -78,6 +78,11 @@ namespace schedule.Repos
             db.Groups.Add(group);
             db.SaveChanges();
         }
+        public static void AddToDb(List<Group> groups)
+        {
+            db.Groups.AddRange(groups);
+            db.SaveChanges();
+        }
         public static void RemoveFromDb(Group group)
         {
             if (db.Groups.Contains(group))

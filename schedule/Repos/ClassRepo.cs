@@ -119,6 +119,11 @@ namespace schedule
             db.Classes.Add(@class);
             db.SaveChanges();
         }
+        public static void AddToDb(List<Class> classes)
+        {
+            db.Classes.AddRange(classes);
+            db.SaveChanges();
+        }
         public static void RemoveFromDb(Class @class)
         {
             if(db.Classes.Contains(@class))
