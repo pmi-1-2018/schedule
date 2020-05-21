@@ -193,7 +193,7 @@ namespace schedule
                 {
                     if (CalculatedClasses[j].GroupId == c[i].GroupId || CalculatedClasses[j].RoomId == c[i].RoomId || CalculatedClasses[j].TeacherId == c[i].TeacherId)
                     {
-                        Possible &= (~(1 << ((int)c[i].Day * 3 + (int)c[i].Number)));
+                        Possible &= (~(1 << n - 1 - (((int)CalculatedClasses[j].Day-1) * 3 + (int)CalculatedClasses[j].Number - 1)));
                     }
                 }
                 //Possible &= (2 << n+1) - 1;
@@ -204,9 +204,21 @@ namespace schedule
                 }
                 else
                 {
+                    Console.WriteLine($"Test:{i}");
                     int count = countSetBits(Possible);
-                    int index = rnd.Next(count);
-                    index = findIndex(Possible, index-1);
+                    Console.WriteLine(count);
+                    int index = rnd.Next(count-1)+1;
+                    Console.WriteLine(index);
+
+                    int fuckThisShit = Possible;
+                    for (int ff = 0; ff < 15; ff++)
+                    {
+                        Console.Write(Possible & 1);
+                        Possible >>= 1;
+                    }
+                    Console.WriteLine();
+                    index = findIndex(fuckThisShit, index-1);
+                    Console.WriteLine(index);
                     c[i].Day = (DayOfWeek)(index / 3 + 1);
                     c[i].Number = (long?)index % 3 + 1;
                     CalculatedClasses.Add(c[i]);
