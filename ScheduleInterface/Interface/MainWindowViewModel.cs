@@ -26,7 +26,7 @@ namespace ScheduleInterface
         {
             CreateCommand = new DelegateCommand(Create);
             ShowCommand = new DelegateCommand(Show);
-            //Classes = new ObservableCollection<Class>();
+            Classes = new ObservableCollection<Class>();
             schedule = new Schedule();
         }
         private void SetProgramMode()
@@ -54,7 +54,11 @@ namespace ScheduleInterface
         {
             if(RadioButCheck && (programMode == ProgramMode.Both || programMode == ProgramMode.Database))
             {
-                Classes = new ObservableCollection<Class>(schedule.Classes);
+                foreach (var item in ClassRepo.GetClassesFromDb())
+                {
+                    Classes.Add(item);
+                }
+                //Classes = new ObservableCollection<Class>(schedule.Classes);
             }
             else if(!RadioButCheck && programMode == ProgramMode.XML)
             {
