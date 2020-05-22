@@ -48,10 +48,11 @@ namespace ScheduleInterface
         {
             SetProgramMode();
             schedule.CreateSchedule(programMode);
-            MessageBox.Show("Schedule is ready", "Result", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Schedule is ready :)", "Result", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         public void Show(object o)
         {
+            Classes.Clear();
             if(RadioButCheck && (programMode == ProgramMode.Both || programMode == ProgramMode.Database))
             {
                 foreach (var item in ClassRepo.GetClassesFromDb())
@@ -60,14 +61,18 @@ namespace ScheduleInterface
                 }
                 //Classes = new ObservableCollection<Class>(schedule.Classes);
             }
-            else if(!RadioButCheck && programMode == ProgramMode.XML)
+            else if(!RadioButCheck && (programMode == ProgramMode.Both || programMode == ProgramMode.Database))
             {
                 schedule.FormClassesByID();
-                Classes = new ObservableCollection<Class>(schedule.Classes);
+                foreach (var item in schedule.Classes)
+                {
+                    Classes.Add(item);
+                }
+                //Classes = new ObservableCollection<Class>(schedule.Classes);
             }
             else
             {
-                MessageBox.Show("I think you've done something wrong :)", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("I think you've done something wrong :(", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

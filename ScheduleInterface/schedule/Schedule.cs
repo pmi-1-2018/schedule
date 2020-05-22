@@ -84,6 +84,7 @@ namespace schedule
 
         public void CreateSchedule(ProgramMode pm)
         {
+            ResetAlgorithm();
             if (pm == ProgramMode.XML)
             {
                 this.GetDataFromXML();
@@ -108,12 +109,12 @@ namespace schedule
             }
             else if(pm == ProgramMode.XML)
             {
-                ClassRepo.SerializeArray("../../Data/classes.xml",ResSchedule.ToArray());
+                ClassRepo.SerializeArray("../../schedule/Data/classes.xml", ResSchedule.ToArray());
             }
             else
             {
                 ClassRepo.AddToDb(ResSchedule);
-                ClassRepo.SerializeDb("../../Data/classes.xml");
+                ClassRepo.SerializeDb("../../schedule/Data/classes.xml");
             }
         }
 
@@ -222,12 +223,12 @@ namespace schedule
         }
         public void GetDataFromXML()
         {
-            Groups = GroupRepo.DeserializeArray("../../Data/groups.xml").ToList();
-            Teachers = TeacherRepo.DeserializeArray("../../Data/teachers.xml").ToList();
-            Rooms = RoomRepo.DeserializeArray("../../Data/rooms.xml").ToList();
-            GroupSubjects = GroupSubjectRepo.DeserializeArray("../../Data/group_subjects.xml").ToList();
-            TeacherSubjects = TeacherSubjectRepo.DeserializeArray("../../Data/teacher_subjects.xml").ToList();
-            Subjects = SubjectRepo.DeserializeArray("../../Data/subjects.xml").ToList();
+            Groups = GroupRepo.DeserializeArray("../../schedule/Data/groups.xml").ToList();
+            Teachers = TeacherRepo.DeserializeArray("../../schedule/Data/teachers.xml").ToList();
+            Rooms = RoomRepo.DeserializeArray("../../schedule/Data/rooms.xml").ToList();
+            GroupSubjects = GroupSubjectRepo.DeserializeArray("../../schedule/Data/group_subjects.xml").ToList();
+            TeacherSubjects = TeacherSubjectRepo.DeserializeArray("../../schedule/Data/teacher_subjects.xml").ToList();
+            Subjects = SubjectRepo.DeserializeArray("../../schedule/Data/subjects.xml").ToList();
         }
         public void GetDataFromDb()
         {
@@ -248,5 +249,19 @@ namespace schedule
                 ResSchedule[i].Subject = Subjects.SingleOrDefault(s => s.Id == ResSchedule[i].SubjectId);
             }
         }
+        private void ResetAlgorithm()
+        {
+            ResSchedule?.Clear();
+            Rooms?.Clear();
+            Classes?.Clear();
+            DictionaryOfSubjects?.Clear();
+            DictionaryOfGroups?.Clear();
+            Groups?.Clear();
+            Subjects?.Clear();
+            GroupSubjects?.Clear();
+            Teachers?.Clear();
+            TeacherSubjects?.Clear();
+            ClassRepo.DeleteAllFromDb();
+    }
     }
 }

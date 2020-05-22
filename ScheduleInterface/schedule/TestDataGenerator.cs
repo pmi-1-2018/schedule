@@ -11,7 +11,7 @@ namespace schedule
 {
     static class TestDataGenerator
     {
-        public static void GenerateGrours()
+        public static void GenerateGroups()
         {
             // groups
             Group g1 = GroupRepo.CreateGroup("ПМІ-21", 20);

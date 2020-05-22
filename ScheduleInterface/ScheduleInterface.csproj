@@ -236,6 +236,9 @@
     <Resource Include="schedule\Data\teacher_subjects.xml" />
     <Resource Include="schedule\Data\test.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="schedule\Data\classes.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
