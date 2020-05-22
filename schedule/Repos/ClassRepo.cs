@@ -15,7 +15,7 @@ namespace schedule
             db = new ScheduleDbContext();
         }
         public static Class CreateClass(long ClassId, long ClassRoomId, long ClassGroupId, long ClassSubjectId,
-                                        long ClassTeacherId, DayOfWeek ClassDay, long ClassNumber)
+                                        long ClassTeacherId, DayOfWeek? ClassDay, long? ClassNumber)
         {
             return new Class()
             {
@@ -39,6 +39,16 @@ namespace schedule
                 TeacherId = ClassTeacherId,
                 Day = ClassDay,
                 Number = ClassNumber
+            };
+        }
+        public static Class CreateClass(long ClassGroupId, long ClassSubjectId,
+                                long ClassTeacherId)
+        {
+            return new Class()
+            {
+                GroupId = ClassGroupId,
+                SubjectId = ClassSubjectId,
+                TeacherId = ClassTeacherId,
             };
         }
         public static void UpdateClass(Class @class, long ClassId = 0, long ClassRoomId = 0,
@@ -119,6 +129,11 @@ namespace schedule
             db.Classes.Add(@class);
             db.SaveChanges();
         }
+        public static void AddToDb(List<Class> classes)
+        {
+            db.Classes.AddRange(classes);
+            db.SaveChanges();
+        }
         public static void RemoveFromDb(Class @class)
         {
             if(db.Classes.Contains(@class))
@@ -149,7 +164,14 @@ namespace schedule
 
         public static void SerializeDb(string filename)
         {
-            SerializeArray(filename, db.Classes.ToArray());
+            //SerializeArray(filename, db.Classes.ToArray());
+            var classesFromDb = db.Classes.ToArray();
+            var classesToSerialize = new Class[classesFromDb.Length];
+            for (int i = 0; i < classesToSerialize.Length; i++)
+            {
+                classesToSerialize[i] = CreateClass(classesFromDb[i].Id, classesFromDb[i].RoomId, classesFromDb[i].GroupId, classesFromDb[i].SubjectId, classesFromDb[i].TeacherId, classesFromDb[i].Day, classesFromDb[i].Number);
+            }
+            SerializeArray(filename, classesToSerialize);
         }
     }
 }

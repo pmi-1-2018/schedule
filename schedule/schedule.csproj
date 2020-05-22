@@ -170,6 +170,7 @@
     <Compile Include="Entities\Subject.cs" />
     <Compile Include="Entities\Teacher.cs" />
     <Compile Include="Entities\TeacherSubject.cs" />
+    <Compile Include="TestDataGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -177,10 +178,13 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Data\test.xml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
+    <Content Include="Data\groups.xml" />
+    <Content Include="Data\group_subjects.xml" />
+    <Content Include="Data\rooms.xml" />
+    <Content Include="Data\subjects.xml" />
+    <Content Include="Data\teachers.xml" />
+    <Content Include="Data\teacher_subjects.xml" />
+    <Content Include="Data\test.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

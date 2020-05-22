@@ -1,0 +1,38 @@
+﻿<Window x:Class="ScheduleInterface.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ScheduleInterface"
+        mc:Ignorable="d"
+        Title="Schedule" Height="450" Width="730" ResizeMode="CanMinimize">
+    <Grid>
+        <DataGrid  
+            x:Name="dataGridSchedule"
+            HorizontalAlignment="Left"
+            Height="383"
+            Margin="10,10,0,0"
+            VerticalAlignment="Top"
+            Width="539"
+            ItemsSource="{Binding Classes}"
+            AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Group" Binding="{Binding Path=Group.Name}" Width="50" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Subject" Binding="{Binding Path=Subject.Name}" Width="150" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Teacher" Binding="{Binding Path=Teacher.FullName}" Width="150" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Room" Binding="{Binding Path=Room.Number}" Width="50" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Day" Binding="{Binding Path=Day}" Width="50" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Number" Binding="{Binding Path=Number}" Width="60" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+            <Label Content="Creating place:" HorizontalAlignment="Left" Margin="567,10,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="checkBoxDatabase" Content="Database" HorizontalAlignment="Left" Margin="594,41,0,0" VerticalAlignment="Top" IsChecked="{Binding IsDatabaseChecked}"/>
+        <CheckBox x:Name="checkBoxFile" Content="File" HorizontalAlignment="Left" Margin="594,61,0,0" VerticalAlignment="Top" IsChecked="{Binding IsFileChecked}"/>
+        <Button x:Name="createButton" Content="Create" HorizontalAlignment="Left" Margin="594,81,0,0" VerticalAlignment="Top" Width="75" Command="{Binding CreateCommand}"/>
+        <Label Content="Show from:" HorizontalAlignment="Left" Margin="567,184,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="buttonShow" Content="Show" HorizontalAlignment="Left" Margin="594,255,0,0" VerticalAlignment="Top" Width="75" Command="{Binding ShowCommand}"/>
+        <RadioButton x:Name="radioButtonDatabase" Content="Database" HorizontalAlignment="Left" Margin="594,215,0,0" VerticalAlignment="Top" IsChecked="{Binding RadioButCheck}"/>
+        <RadioButton x:Name="radioButtonFile" Content="File" HorizontalAlignment="Left" Margin="594,235,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>
