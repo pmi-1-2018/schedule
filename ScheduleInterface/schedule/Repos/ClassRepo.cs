@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using schedule.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace schedule
 {
@@ -41,8 +42,7 @@ namespace schedule
                 Number = ClassNumber
             };
         }
-        public static Class CreateClass(long ClassGroupId, long ClassSubjectId,
-                                long ClassTeacherId)
+        public static Class CreateClass(long ClassGroupId, long ClassSubjectId,long ClassTeacherId)
         {
             return new Class()
             {
@@ -159,7 +159,7 @@ namespace schedule
         }
         public static List<Class> GetClassesFromDb()
         {
-            return db.Classes.ToList();
+            return db.Classes.Include(c => c.Group).Include(c => c.Subject).Include(c => c.Teacher).Include(c => c.Room).ToList();
         }
 
         public static void SerializeDb(string filename)
@@ -172,6 +172,15 @@ namespace schedule
                 classesToSerialize[i] = CreateClass(classesFromDb[i].Id, classesFromDb[i].RoomId, classesFromDb[i].GroupId, classesFromDb[i].SubjectId, classesFromDb[i].TeacherId, classesFromDb[i].Day, classesFromDb[i].Number);
             }
             SerializeArray(filename, classesToSerialize);
+        }
+        public static void DeleteAllFromDb()
+        {
+            var classesToRemove = GetClassesFromDb();
+            if(classesToRemove != null)
+            {
+                db.Classes.RemoveRange(classesToRemove);
+                db.SaveChanges();
+            }
         }
     }
 }

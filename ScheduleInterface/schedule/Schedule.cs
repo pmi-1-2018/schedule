@@ -84,6 +84,7 @@ namespace schedule
 
         public void CreateSchedule(ProgramMode pm)
         {
+            ResetAlgorithm();
             if (pm == ProgramMode.XML)
             {
                 this.GetDataFromXML();
@@ -108,12 +109,12 @@ namespace schedule
             }
             else if(pm == ProgramMode.XML)
             {
-                ClassRepo.SerializeArray("../../Data/classes.xml",ResSchedule.ToArray());
+                ClassRepo.SerializeArray("../../schedule/Data/classes.xml", ResSchedule.ToArray());
             }
             else
             {
                 ClassRepo.AddToDb(ResSchedule);
-                ClassRepo.SerializeDb("../../Data/classes.xml");
+                ClassRepo.SerializeDb("../../schedule/Data/classes.xml");
             }
         }
 
@@ -222,12 +223,12 @@ namespace schedule
         }
         public void GetDataFromXML()
         {
-            Groups = GroupRepo.DeserializeArray("../../Data/groups.xml").ToList();
-            Teachers = TeacherRepo.DeserializeArray("../../Data/teachers.xml").ToList();
-            Rooms = RoomRepo.DeserializeArray("../../Data/rooms.xml").ToList();
-            GroupSubjects = GroupSubjectRepo.DeserializeArray("../../Data/group_subjects.xml").ToList();
-            TeacherSubjects = TeacherSubjectRepo.DeserializeArray("../../Data/teacher_subjects.xml").ToList();
-            Subjects = SubjectRepo.DeserializeArray("../../Data/subjects.xml").ToList();
+            Groups = GroupRepo.DeserializeArray("../../schedule/Data/groups.xml").ToList();
+            Teachers = TeacherRepo.DeserializeArray("../../schedule/Data/teachers.xml").ToList();
+            Rooms = RoomRepo.DeserializeArray("../../schedule/Data/rooms.xml").ToList();
+            GroupSubjects = GroupSubjectRepo.DeserializeArray("../../schedule/Data/group_subjects.xml").ToList();
+            TeacherSubjects = TeacherSubjectRepo.DeserializeArray("../../schedule/Data/teacher_subjects.xml").ToList();
+            Subjects = SubjectRepo.DeserializeArray("../../schedule/Data/subjects.xml").ToList();
         }
         public void GetDataFromDb()
         {
@@ -238,15 +239,35 @@ namespace schedule
             TeacherSubjects = TeacherSubjectRepo.GetTeacherSubjectsFromDb();
             Subjects = SubjectRepo.GetSubjectsFromDb();
         }
-        public void FormClassesByID()
+        public List<Class> GetClassesFromFile()
         {
-            for (int i = 0; i < ResSchedule.Count; i++)
+            var ClassesFromFile = ClassRepo.DeserializeArray("../../schedule/Data/classes.xml").ToList();
+            for (int i = 0; i < ClassesFromFile.Count; i++)
             {
-                ResSchedule[i].Group = Groups.SingleOrDefault(g => g.Id == ResSchedule[i].GroupId);
-                ResSchedule[i].Teacher = Teachers.SingleOrDefault(t => t.Id == ResSchedule[i].TeacherId);
-                ResSchedule[i].Room = Rooms.SingleOrDefault(r => r.Id == ResSchedule[i].RoomId);
-                ResSchedule[i].Subject = Subjects.SingleOrDefault(s => s.Id == ResSchedule[i].SubjectId);
+                ClassesFromFile[i].Group = Groups.SingleOrDefault(g => g.Id == ResSchedule[i].GroupId);
+                ClassesFromFile[i].Teacher = Teachers.SingleOrDefault(t => t.Id == ResSchedule[i].TeacherId);
+                ClassesFromFile[i].Room = Rooms.SingleOrDefault(r => r.Id == ResSchedule[i].RoomId);
+                ClassesFromFile[i].Subject = Subjects.SingleOrDefault(s => s.Id == ResSchedule[i].SubjectId);
             }
+            return ClassesFromFile;
         }
+        public List<Class> GetClassesFromDb()
+        {
+            return ClassRepo.GetClassesFromDb();
+        }
+        private void ResetAlgorithm()
+        {
+            ResSchedule?.Clear();
+            Rooms?.Clear();
+            Classes?.Clear();
+            DictionaryOfSubjects?.Clear();
+            DictionaryOfGroups?.Clear();
+            Groups?.Clear();
+            Subjects?.Clear();
+            GroupSubjects?.Clear();
+            Teachers?.Clear();
+            TeacherSubjects?.Clear();
+            ClassRepo.DeleteAllFromDb();
+    }
     }
 }
