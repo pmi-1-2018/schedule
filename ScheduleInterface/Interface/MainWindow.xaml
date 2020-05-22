@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ScheduleInterface"
         mc:Ignorable="d"
-        Title="Schedule" Height="450" Width="730">
+        Title="Schedule" Height="450" Width="730" ResizeMode="CanMinimize">
     <Grid>
         <DataGrid  
             x:Name="dataGridSchedule"
@@ -13,17 +13,16 @@
             Height="383"
             Margin="10,10,0,0"
             VerticalAlignment="Top"
-            Width="525"
-            Grid.ColumnSpan="2"
+            Width="539"
             ItemsSource="{Binding Classes}"
             AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Group" Binding="{Binding Path=Group.Name}" Width="50" />
-                <DataGridHyperlinkColumn Header="Subject" Binding="{Binding Path=Subject.Name}" Width="150" />
-                <DataGridTextColumn Header="Teacher" Binding="{Binding Path=Teacher.FullName}" Width="150" />
-                <DataGridTextColumn Header="Room" Binding="{Binding Path=Room.Number}" Width="50" />
-                <DataGridTextColumn Header="Day" Binding="{Binding Path=Day}" Width="50" />
-                <DataGridTextColumn Header="Number" Binding="{Binding Path=Number}" Width="60" />
+                <DataGridTextColumn Header="Group" Binding="{Binding Path=Group.Name}" Width="50" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Subject" Binding="{Binding Path=Subject.Name}" Width="150" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Teacher" Binding="{Binding Path=Teacher.FullName}" Width="150" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Room" Binding="{Binding Path=Room.Number}" Width="50" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Day" Binding="{Binding Path=Day}" Width="50" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Number" Binding="{Binding Path=Number}" Width="60" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
             <Label Content="Creating place:" HorizontalAlignment="Left" Margin="567,10,0,0" VerticalAlignment="Top"/>
