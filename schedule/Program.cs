@@ -17,14 +17,19 @@ namespace schedule
         static void Main(string[] args)
         {
 
-            //Schedule s = new Schedule(ProgramMode.Database);
-            //s.CreateSchedule(ProgramMode.Database);
+            Schedule s = new Schedule();
+            s.CreateSchedule(ProgramMode.Database);
             //TestDataGenerator.GenerateGrours();
             //TestDataGenerator.GenerateRooms();
             //TestDataGenerator.GenerateSubjects();
             //TestDataGenerator.GenerateTeachers();
             //TestDataGenerator.GenerateGroupSubjects();
             //TestDataGenerator.GenerateTeacherSubjects();
+            //var a = GroupRepo.GetGroupsFromDb();
+            //foreach (var el in a)
+            //{
+            //    Console.WriteLine($"{el.Name} {el.Size}");
+            //}
         }
     }
 }

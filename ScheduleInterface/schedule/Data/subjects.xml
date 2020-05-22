@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<ArrayOfSubject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Subject>
+    <Id>1</Id>
+    <Name>ТЕОРІЯ АЛГОРИТ.</Name>
+    <Type>Lecture</Type>
+  </Subject>
+  <Subject>
+    <Id>2</Id>
+    <Name>ТЕОРІЯ АЛГОРИТ.</Name>
+    <Type>Computer</Type>
+  </Subject>
+  <Subject>
+    <Id>3</Id>
+    <Name>КОМП. ІНФ. мережі</Name>
+    <Type>Lecture</Type>
+  </Subject>
+  <Subject>
+    <Id>4</Id>
+    <Name>КОМП. ІНФ. мережі</Name>
+    <Type>Computer</Type>
+  </Subject>
+  <Subject>
+    <Id>5</Id>
+    <Name>Програмування</Name>
+    <Type>Lecture</Type>
+  </Subject>
+  <Subject>
+    <Id>6</Id>
+    <Name>Програмування</Name>
+    <Type>Computer</Type>
+  </Subject>
+  <Subject>
+    <Id>7</Id>
+    <Name>БД ТА ІС</Name>
+    <Type>Lecture</Type>
+  </Subject>
+  <Subject>
+    <Id>8</Id>
+    <Name>БД ТА ІС</Name>
+    <Type>Computer</Type>
+  </Subject>
+  <Subject>
+    <Id>9</Id>
+    <Name>ВИР. ПРАК.(обч.)</Name>
+    <Type>Computer</Type>
+  </Subject>
+  <Subject>
+    <Id>10</Id>
+    <Name>ТІМС</Name>
+    <Type>Lecture</Type>
+  </Subject>
+  <Subject>
+    <Id>11</Id>
+    <Name>ТІМС</Name>
+    <Type>Ordinary</Type>
+  </Subject>
+</ArrayOfSubject>
