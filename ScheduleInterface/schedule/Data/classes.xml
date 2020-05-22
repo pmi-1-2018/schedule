@@ -1,196 +1,88 @@
 <?xml version="1.0"?>
 <ArrayOfClass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Class>
-    <Id>925</Id>
-    <RoomId>12</RoomId>
-    <GroupId>1</GroupId>
-    <SubjectId>1</SubjectId>
-    <TeacherId>8</TeacherId>
-    <Day>Wednesday</Day>
-    <Number>3</Number>
-  </Class>
-  <Class>
-    <Id>926</Id>
+    <Id>1024</Id>
     <RoomId>11</RoomId>
-    <GroupId>1</GroupId>
+    <GroupId>3</GroupId>
     <SubjectId>11</SubjectId>
     <TeacherId>1</TeacherId>
-    <Day>Wednesday</Day>
-    <Number>2</Number>
-  </Class>
-  <Class>
-    <Id>927</Id>
-    <RoomId>12</RoomId>
-    <GroupId>3</GroupId>
-    <SubjectId>10</SubjectId>
-    <TeacherId>3</TeacherId>
-    <Day>Friday</Day>
-    <Number>1</Number>
-  </Class>
-  <Class>
-    <Id>928</Id>
-    <RoomId>2</RoomId>
-    <GroupId>2</GroupId>
-    <SubjectId>10</SubjectId>
-    <TeacherId>3</TeacherId>
-    <Day>Wednesday</Day>
-    <Number>3</Number>
-  </Class>
-  <Class>
-    <Id>929</Id>
-    <RoomId>12</RoomId>
-    <GroupId>1</GroupId>
-    <SubjectId>10</SubjectId>
-    <TeacherId>3</TeacherId>
-    <Day>Friday</Day>
-    <Number>2</Number>
-  </Class>
-  <Class>
-    <Id>930</Id>
-    <RoomId>5</RoomId>
-    <GroupId>3</GroupId>
-    <SubjectId>9</SubjectId>
-    <TeacherId>6</TeacherId>
-    <Day>Monday</Day>
-    <Number>3</Number>
-  </Class>
-  <Class>
-    <Id>931</Id>
-    <RoomId>5</RoomId>
-    <GroupId>2</GroupId>
-    <SubjectId>9</SubjectId>
-    <TeacherId>12</TeacherId>
-    <Day>Monday</Day>
-    <Number>2</Number>
-  </Class>
-  <Class>
-    <Id>932</Id>
-    <RoomId>9</RoomId>
-    <GroupId>1</GroupId>
-    <SubjectId>9</SubjectId>
-    <TeacherId>11</TeacherId>
     <Day>Thursday</Day>
     <Number>2</Number>
   </Class>
   <Class>
-    <Id>933</Id>
-    <RoomId>5</RoomId>
+    <Id>1025</Id>
+    <RoomId>2</RoomId>
     <GroupId>3</GroupId>
-    <SubjectId>8</SubjectId>
-    <TeacherId>13</TeacherId>
-    <Day>Monday</Day>
-    <Number>1</Number>
+    <SubjectId>1</SubjectId>
+    <TeacherId>8</TeacherId>
+    <Day>Tuesday</Day>
+    <Number>2</Number>
   </Class>
   <Class>
-    <Id>934</Id>
-    <RoomId>6</RoomId>
+    <Id>1026</Id>
+    <RoomId>10</RoomId>
+    <GroupId>1</GroupId>
+    <SubjectId>2</SubjectId>
+    <TeacherId>7</TeacherId>
+    <Day>Thursday</Day>
+    <Number>2</Number>
+  </Class>
+  <Class>
+    <Id>1027</Id>
+    <RoomId>5</RoomId>
     <GroupId>2</GroupId>
-    <SubjectId>8</SubjectId>
+    <SubjectId>2</SubjectId>
     <TeacherId>7</TeacherId>
     <Day>Monday</Day>
     <Number>1</Number>
   </Class>
   <Class>
-    <Id>935</Id>
+    <Id>1028</Id>
     <RoomId>10</RoomId>
-    <GroupId>1</GroupId>
-    <SubjectId>8</SubjectId>
-    <TeacherId>5</TeacherId>
+    <GroupId>3</GroupId>
+    <SubjectId>2</SubjectId>
+    <TeacherId>7</TeacherId>
     <Day>Wednesday</Day>
+    <Number>3</Number>
+  </Class>
+  <Class>
+    <Id>1029</Id>
+    <RoomId>2</RoomId>
+    <GroupId>1</GroupId>
+    <SubjectId>3</SubjectId>
+    <TeacherId>4</TeacherId>
+    <Day>Tuesday</Day>
     <Number>1</Number>
   </Class>
   <Class>
-    <Id>936</Id>
-    <RoomId>2</RoomId>
-    <GroupId>3</GroupId>
-    <SubjectId>7</SubjectId>
-    <TeacherId>9</TeacherId>
-    <Day>Thursday</Day>
-    <Number>3</Number>
-  </Class>
-  <Class>
-    <Id>937</Id>
-    <RoomId>2</RoomId>
-    <GroupId>2</GroupId>
-    <SubjectId>7</SubjectId>
-    <TeacherId>9</TeacherId>
-    <Day>Tuesday</Day>
-    <Number>3</Number>
-  </Class>
-  <Class>
-    <Id>938</Id>
-    <RoomId>2</RoomId>
-    <GroupId>1</GroupId>
-    <SubjectId>7</SubjectId>
-    <TeacherId>9</TeacherId>
-    <Day>Monday</Day>
-    <Number>2</Number>
-  </Class>
-  <Class>
-    <Id>939</Id>
-    <RoomId>10</RoomId>
-    <GroupId>3</GroupId>
-    <SubjectId>6</SubjectId>
-    <TeacherId>12</TeacherId>
-    <Day>Wednesday</Day>
-    <Number>3</Number>
-  </Class>
-  <Class>
-    <Id>940</Id>
-    <RoomId>1</RoomId>
-    <GroupId>2</GroupId>
-    <SubjectId>11</SubjectId>
-    <TeacherId>2</TeacherId>
-    <Day>Tuesday</Day>
-    <Number>2</Number>
-  </Class>
-  <Class>
-    <Id>941</Id>
-    <RoomId>10</RoomId>
-    <GroupId>2</GroupId>
-    <SubjectId>6</SubjectId>
-    <TeacherId>10</TeacherId>
-    <Day>Wednesday</Day>
-    <Number>2</Number>
-  </Class>
-  <Class>
-    <Id>942</Id>
-    <RoomId>2</RoomId>
-    <GroupId>3</GroupId>
-    <SubjectId>5</SubjectId>
-    <TeacherId>10</TeacherId>
-    <Day>Wednesday</Day>
-    <Number>1</Number>
-  </Class>
-  <Class>
-    <Id>943</Id>
+    <Id>1030</Id>
     <RoomId>12</RoomId>
     <GroupId>2</GroupId>
-    <SubjectId>5</SubjectId>
-    <TeacherId>10</TeacherId>
+    <SubjectId>3</SubjectId>
+    <TeacherId>4</TeacherId>
     <Day>Thursday</Day>
     <Number>3</Number>
   </Class>
   <Class>
-    <Id>944</Id>
-    <RoomId>2</RoomId>
-    <GroupId>1</GroupId>
-    <SubjectId>5</SubjectId>
-    <TeacherId>10</TeacherId>
-    <Day>Monday</Day>
+    <Id>1031</Id>
+    <RoomId>12</RoomId>
+    <GroupId>3</GroupId>
+    <SubjectId>3</SubjectId>
+    <TeacherId>4</TeacherId>
+    <Day>Friday</Day>
     <Number>1</Number>
   </Class>
   <Class>
-    <Id>945</Id>
-    <RoomId>6</RoomId>
-    <GroupId>3</GroupId>
+    <Id>1032</Id>
+    <RoomId>15</RoomId>
+    <GroupId>1</GroupId>
     <SubjectId>4</SubjectId>
-    <TeacherId>13</TeacherId>
-    <Day>Monday</Day>
-    <Number>2</Number>
+    <TeacherId>4</TeacherId>
+    <Day>Thursday</Day>
+    <Number>1</Number>
   </Class>
   <Class>
-    <Id>946</Id>
+    <Id>1033</Id>
     <RoomId>16</RoomId>
     <GroupId>2</GroupId>
     <SubjectId>4</SubjectId>
@@ -199,102 +91,210 @@
     <Number>2</Number>
   </Class>
   <Class>
-    <Id>947</Id>
-    <RoomId>15</RoomId>
-    <GroupId>1</GroupId>
+    <Id>1034</Id>
+    <RoomId>9</RoomId>
+    <GroupId>3</GroupId>
     <SubjectId>4</SubjectId>
-    <TeacherId>4</TeacherId>
+    <TeacherId>13</TeacherId>
+    <Day>Wednesday</Day>
+    <Number>2</Number>
+  </Class>
+  <Class>
+    <Id>1035</Id>
+    <RoomId>2</RoomId>
+    <GroupId>1</GroupId>
+    <SubjectId>5</SubjectId>
+    <TeacherId>10</TeacherId>
+    <Day>Monday</Day>
+    <Number>1</Number>
+  </Class>
+  <Class>
+    <Id>1036</Id>
+    <RoomId>2</RoomId>
+    <GroupId>2</GroupId>
+    <SubjectId>5</SubjectId>
+    <TeacherId>10</TeacherId>
+    <Day>Wednesday</Day>
+    <Number>2</Number>
+  </Class>
+  <Class>
+    <Id>1037</Id>
+    <RoomId>12</RoomId>
+    <GroupId>3</GroupId>
+    <SubjectId>5</SubjectId>
+    <TeacherId>10</TeacherId>
+    <Day>Thursday</Day>
+    <Number>1</Number>
+  </Class>
+  <Class>
+    <Id>1038</Id>
+    <RoomId>9</RoomId>
+    <GroupId>1</GroupId>
+    <SubjectId>6</SubjectId>
+    <TeacherId>6</TeacherId>
+    <Day>Wednesday</Day>
+    <Number>1</Number>
+  </Class>
+  <Class>
+    <Id>1039</Id>
+    <RoomId>2</RoomId>
+    <GroupId>2</GroupId>
+    <SubjectId>1</SubjectId>
+    <TeacherId>8</TeacherId>
+    <Day>Wednesday</Day>
+    <Number>1</Number>
+  </Class>
+  <Class>
+    <Id>1040</Id>
+    <RoomId>6</RoomId>
+    <GroupId>2</GroupId>
+    <SubjectId>6</SubjectId>
+    <TeacherId>10</TeacherId>
+    <Day>Monday</Day>
+    <Number>3</Number>
+  </Class>
+  <Class>
+    <Id>1041</Id>
+    <RoomId>12</RoomId>
+    <GroupId>1</GroupId>
+    <SubjectId>7</SubjectId>
+    <TeacherId>9</TeacherId>
+    <Day>Tuesday</Day>
+    <Number>3</Number>
+  </Class>
+  <Class>
+    <Id>1042</Id>
+    <RoomId>2</RoomId>
+    <GroupId>2</GroupId>
+    <SubjectId>7</SubjectId>
+    <TeacherId>9</TeacherId>
+    <Day>Monday</Day>
+    <Number>2</Number>
+  </Class>
+  <Class>
+    <Id>1043</Id>
+    <RoomId>12</RoomId>
+    <GroupId>3</GroupId>
+    <SubjectId>7</SubjectId>
+    <TeacherId>9</TeacherId>
+    <Day>Wednesday</Day>
+    <Number>1</Number>
+  </Class>
+  <Class>
+    <Id>1044</Id>
+    <RoomId>16</RoomId>
+    <GroupId>1</GroupId>
+    <SubjectId>8</SubjectId>
+    <TeacherId>5</TeacherId>
     <Day>Friday</Day>
     <Number>1</Number>
   </Class>
   <Class>
-    <Id>948</Id>
-    <RoomId>2</RoomId>
+    <Id>1045</Id>
+    <RoomId>10</RoomId>
+    <GroupId>2</GroupId>
+    <SubjectId>8</SubjectId>
+    <TeacherId>7</TeacherId>
+    <Day>Thursday</Day>
+    <Number>1</Number>
+  </Class>
+  <Class>
+    <Id>1046</Id>
+    <RoomId>5</RoomId>
     <GroupId>3</GroupId>
-    <SubjectId>3</SubjectId>
-    <TeacherId>4</TeacherId>
+    <SubjectId>8</SubjectId>
+    <TeacherId>13</TeacherId>
+    <Day>Monday</Day>
+    <Number>2</Number>
+  </Class>
+  <Class>
+    <Id>1047</Id>
+    <RoomId>6</RoomId>
+    <GroupId>1</GroupId>
+    <SubjectId>9</SubjectId>
+    <TeacherId>11</TeacherId>
     <Day>Tuesday</Day>
     <Number>2</Number>
   </Class>
   <Class>
-    <Id>949</Id>
-    <RoomId>2</RoomId>
+    <Id>1048</Id>
+    <RoomId>9</RoomId>
     <GroupId>2</GroupId>
-    <SubjectId>3</SubjectId>
-    <TeacherId>4</TeacherId>
-    <Day>Tuesday</Day>
-    <Number>1</Number>
-  </Class>
-  <Class>
-    <Id>950</Id>
-    <RoomId>2</RoomId>
-    <GroupId>1</GroupId>
-    <SubjectId>3</SubjectId>
-    <TeacherId>4</TeacherId>
-    <Day>Monday</Day>
+    <SubjectId>9</SubjectId>
+    <TeacherId>12</TeacherId>
+    <Day>Wednesday</Day>
     <Number>3</Number>
   </Class>
   <Class>
-    <Id>951</Id>
-    <RoomId>10</RoomId>
+    <Id>1049</Id>
+    <RoomId>8</RoomId>
     <GroupId>3</GroupId>
-    <SubjectId>2</SubjectId>
-    <TeacherId>7</TeacherId>
-    <Day>Thursday</Day>
-    <Number>2</Number>
-  </Class>
-  <Class>
-    <Id>952</Id>
-    <RoomId>6</RoomId>
-    <GroupId>2</GroupId>
-    <SubjectId>2</SubjectId>
-    <TeacherId>7</TeacherId>
-    <Day>Monday</Day>
-    <Number>3</Number>
-  </Class>
-  <Class>
-    <Id>953</Id>
-    <RoomId>10</RoomId>
-    <GroupId>1</GroupId>
-    <SubjectId>2</SubjectId>
-    <TeacherId>7</TeacherId>
-    <Day>Thursday</Day>
-    <Number>1</Number>
-  </Class>
-  <Class>
-    <Id>954</Id>
-    <RoomId>12</RoomId>
-    <GroupId>3</GroupId>
-    <SubjectId>1</SubjectId>
-    <TeacherId>8</TeacherId>
-    <Day>Thursday</Day>
-    <Number>1</Number>
-  </Class>
-  <Class>
-    <Id>955</Id>
-    <RoomId>12</RoomId>
-    <GroupId>2</GroupId>
-    <SubjectId>1</SubjectId>
-    <TeacherId>8</TeacherId>
-    <Day>Thursday</Day>
-    <Number>2</Number>
-  </Class>
-  <Class>
-    <Id>956</Id>
-    <RoomId>6</RoomId>
-    <GroupId>1</GroupId>
-    <SubjectId>6</SubjectId>
+    <SubjectId>9</SubjectId>
     <TeacherId>6</TeacherId>
     <Day>Tuesday</Day>
+    <Number>3</Number>
+  </Class>
+  <Class>
+    <Id>1050</Id>
+    <RoomId>2</RoomId>
+    <GroupId>1</GroupId>
+    <SubjectId>10</SubjectId>
+    <TeacherId>3</TeacherId>
+    <Day>Monday</Day>
+    <Number>3</Number>
+  </Class>
+  <Class>
+    <Id>1051</Id>
+    <RoomId>12</RoomId>
+    <GroupId>2</GroupId>
+    <SubjectId>10</SubjectId>
+    <TeacherId>3</TeacherId>
+    <Day>Thursday</Day>
     <Number>2</Number>
   </Class>
   <Class>
-    <Id>957</Id>
-    <RoomId>14</RoomId>
+    <Id>1052</Id>
+    <RoomId>12</RoomId>
     <GroupId>3</GroupId>
+    <SubjectId>10</SubjectId>
+    <TeacherId>3</TeacherId>
+    <Day>Friday</Day>
+    <Number>2</Number>
+  </Class>
+  <Class>
+    <Id>1053</Id>
+    <RoomId>14</RoomId>
+    <GroupId>1</GroupId>
     <SubjectId>11</SubjectId>
     <TeacherId>1</TeacherId>
     <Day>Friday</Day>
     <Number>2</Number>
   </Class>
-</ArrayOfClass>ass>
+  <Class>
+    <Id>1054</Id>
+    <RoomId>1</RoomId>
+    <GroupId>2</GroupId>
+    <SubjectId>11</SubjectId>
+    <TeacherId>2</TeacherId>
+    <Day>Tuesday</Day>
+    <Number>1</Number>
+  </Class>
+  <Class>
+    <Id>1055</Id>
+    <RoomId>6</RoomId>
+    <GroupId>3</GroupId>
+    <SubjectId>6</SubjectId>
+    <TeacherId>12</TeacherId>
+    <Day>Tuesday</Day>
+    <Number>1</Number>
+  </Class>
+  <Class>
+    <Id>1056</Id>
+    <RoomId>12</RoomId>
+    <GroupId>1</GroupId>
+    <SubjectId>1</SubjectId>
+    <TeacherId>8</TeacherId>
+    <Day>Wednesday</Day>
+    <Number>2</Number>
+  </Class>
+</ArrayOfClass>

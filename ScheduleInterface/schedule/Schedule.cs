@@ -239,15 +239,21 @@ namespace schedule
             TeacherSubjects = TeacherSubjectRepo.GetTeacherSubjectsFromDb();
             Subjects = SubjectRepo.GetSubjectsFromDb();
         }
-        public void FormClassesByID()
+        public List<Class> GetClassesFromFile()
         {
-            for (int i = 0; i < ResSchedule.Count; i++)
+            var ClassesFromFile = ClassRepo.DeserializeArray("../../schedule/Data/classes.xml").ToList();
+            for (int i = 0; i < ClassesFromFile.Count; i++)
             {
-                ResSchedule[i].Group = Groups.SingleOrDefault(g => g.Id == ResSchedule[i].GroupId);
-                ResSchedule[i].Teacher = Teachers.SingleOrDefault(t => t.Id == ResSchedule[i].TeacherId);
-                ResSchedule[i].Room = Rooms.SingleOrDefault(r => r.Id == ResSchedule[i].RoomId);
-                ResSchedule[i].Subject = Subjects.SingleOrDefault(s => s.Id == ResSchedule[i].SubjectId);
+                ClassesFromFile[i].Group = Groups.SingleOrDefault(g => g.Id == ResSchedule[i].GroupId);
+                ClassesFromFile[i].Teacher = Teachers.SingleOrDefault(t => t.Id == ResSchedule[i].TeacherId);
+                ClassesFromFile[i].Room = Rooms.SingleOrDefault(r => r.Id == ResSchedule[i].RoomId);
+                ClassesFromFile[i].Subject = Subjects.SingleOrDefault(s => s.Id == ResSchedule[i].SubjectId);
             }
+            return ClassesFromFile;
+        }
+        public List<Class> GetClassesFromDb()
+        {
+            return ClassRepo.GetClassesFromDb();
         }
         private void ResetAlgorithm()
         {

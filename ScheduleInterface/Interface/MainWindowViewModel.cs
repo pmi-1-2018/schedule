@@ -55,7 +55,8 @@ namespace ScheduleInterface
             Classes.Clear();
             if(RadioButCheck && (programMode == ProgramMode.Both || programMode == ProgramMode.Database))
             {
-                foreach (var item in ClassRepo.GetClassesFromDb())
+                var classes = schedule.GetClassesFromDb();
+                foreach (var item in classes)
                 {
                     Classes.Add(item);
                 }
@@ -63,8 +64,8 @@ namespace ScheduleInterface
             }
             else if(!RadioButCheck && (programMode == ProgramMode.Both || programMode == ProgramMode.Database))
             {
-                schedule.FormClassesByID();
-                foreach (var item in schedule.Classes)
+                var classes = schedule.GetClassesFromFile();
+                foreach (var item in classes)
                 {
                     Classes.Add(item);
                 }

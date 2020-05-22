@@ -42,8 +42,7 @@ namespace schedule
                 Number = ClassNumber
             };
         }
-        public static Class CreateClass(long ClassGroupId, long ClassSubjectId,
-                                long ClassTeacherId)
+        public static Class CreateClass(long ClassGroupId, long ClassSubjectId,long ClassTeacherId)
         {
             return new Class()
             {
