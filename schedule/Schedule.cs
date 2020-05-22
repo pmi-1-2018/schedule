@@ -71,7 +71,7 @@ namespace schedule
             {
                 string GroupName = DictionaryOfGroups[item.GroupId].Name;
                 long Course = Convert.ToInt64(GroupName[GroupName.Length - 2]) - 48;
-                if (Course <= 3)
+                if (Course <= 2)
                 {
                     FirstGroup.Add(item);
                 }
