@@ -9,7 +9,7 @@ namespace schedule
     {
         public ScheduleDbContext()
         {
-            
+           
         }
 
         public ScheduleDbContext(DbContextOptions<ScheduleDbContext> options)

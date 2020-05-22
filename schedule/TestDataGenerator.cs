@@ -20,6 +20,18 @@ namespace schedule
             GroupRepo.AddToDb(g2);
             Group g3 = GroupRepo.CreateGroup("ПМІ-23", 20);
             GroupRepo.AddToDb(g3);
+            Group g4 = GroupRepo.CreateGroup("ПМІ-11", 20);
+            GroupRepo.AddToDb(g4);
+            Group g5 = GroupRepo.CreateGroup("ПМІ-12", 20);
+            GroupRepo.AddToDb(g5);
+            Group g6 = GroupRepo.CreateGroup("ПМІ-13", 20);
+            GroupRepo.AddToDb(g6);
+            Group g7 = GroupRepo.CreateGroup("ПМІ-31", 20);
+            GroupRepo.AddToDb(g7);
+            Group g8 = GroupRepo.CreateGroup("ПМІ-32", 20);
+            GroupRepo.AddToDb(g8);
+            Group g9 = GroupRepo.CreateGroup("ПМІ-33", 20);
+            GroupRepo.AddToDb(g9);
         }
         public static void GenerateRooms()
         {
@@ -48,7 +60,7 @@ namespace schedule
             RoomRepo.AddToDb(r11);
             Room r12 = RoomRepo.CreateRoom(ClassType.Lecture, 439, 120);
             RoomRepo.AddToDb(r12);
-            Room r13 = RoomRepo.CreateRoom(ClassType.Ordinary, 366, 25);
+            Room r13 = RoomRepo.CreateRoom(ClassType.Ordinary, 266, 25);
             RoomRepo.AddToDb(r13);
             Room r14 = RoomRepo.CreateRoom(ClassType.Ordinary, 365, 25);
             RoomRepo.AddToDb(r14);
@@ -58,6 +70,10 @@ namespace schedule
             RoomRepo.AddToDb(r16);
             Room r17 = RoomRepo.CreateRoom(ClassType.Ordinary, 261, 25);
             RoomRepo.AddToDb(r17);
+            Room r18 = RoomRepo.CreateRoom(ClassType.Ordinary, 265, 25);
+            RoomRepo.AddToDb(r18);
+            Room r19 = RoomRepo.CreateRoom(ClassType.Computer, 273, 25);
+            RoomRepo.AddToDb(r19);
         }
         public static void GenerateTeachers()
         {
@@ -90,6 +106,55 @@ namespace schedule
             TeacherRepo.AddToDb(t13);
             Teacher t14 = TeacherRepo.CreateTeacher("Малець");
             TeacherRepo.AddToDb(t14);
+            Teacher t15 = TeacherRepo.CreateTeacher("Кулешник");
+            TeacherRepo.AddToDb(t15);
+            Teacher t16 = TeacherRepo.CreateTeacher("Прядко");
+            TeacherRepo.AddToDb(t16);
+            Teacher t17 = TeacherRepo.CreateTeacher("Гошко");
+            TeacherRepo.AddToDb(t17);
+            Teacher t18 = TeacherRepo.CreateTeacher("Пасічник");
+            TeacherRepo.AddToDb(t18);
+            Teacher t19 = TeacherRepo.CreateTeacher("Христіянин");
+            TeacherRepo.AddToDb(t19);
+            Teacher t20 = TeacherRepo.CreateTeacher("Бернакевич");
+            TeacherRepo.AddToDb(t20);
+            Teacher t21 = TeacherRepo.CreateTeacher("Глова");
+            TeacherRepo.AddToDb(t21);
+            Teacher t22 = TeacherRepo.CreateTeacher("Христіянин");
+            TeacherRepo.AddToDb(t22);
+            Teacher t23 = TeacherRepo.CreateTeacher("Музичук");
+            TeacherRepo.AddToDb(t23);
+            Teacher t24 = TeacherRepo.CreateTeacher("Коренівська");
+            TeacherRepo.AddToDb(t24);
+            Teacher t25 = TeacherRepo.CreateTeacher("Щербина");
+            TeacherRepo.AddToDb(t25);
+            Teacher t26 = TeacherRepo.CreateTeacher("Мрака");
+            TeacherRepo.AddToDb(t26);
+            Teacher t27 = TeacherRepo.CreateTeacher("Калиняк");
+            TeacherRepo.AddToDb(t27);
+            Teacher t28 = TeacherRepo.CreateTeacher("Когут");
+            TeacherRepo.AddToDb(t28);
+            Teacher t29 = TeacherRepo.CreateTeacher("Нобіс");
+            TeacherRepo.AddToDb(t29);
+            Teacher t30 = TeacherRepo.CreateTeacher("Вовк");
+            TeacherRepo.AddToDb(t30);
+            Teacher t31 = TeacherRepo.CreateTeacher("Вовк");
+            TeacherRepo.AddToDb(t31);
+            Teacher t32 = TeacherRepo.CreateTeacher("Колос");
+            TeacherRepo.AddToDb(t32);
+            Teacher t33 = TeacherRepo.CreateTeacher("Шинкаренко");
+            TeacherRepo.AddToDb(t33);
+            Teacher t34 = TeacherRepo.CreateTeacher("Остапов");
+            TeacherRepo.AddToDb(t34);
+            Teacher t35 = TeacherRepo.CreateTeacher("Коркуна");
+            TeacherRepo.AddToDb(t35);
+            Teacher t36 = TeacherRepo.CreateTeacher("Олійник");
+            TeacherRepo.AddToDb(t36);
+            Teacher t37 = TeacherRepo.CreateTeacher("Тополюк");
+            TeacherRepo.AddToDb(t37);
+            Teacher t38 = TeacherRepo.CreateTeacher("Чирун");
+            TeacherRepo.AddToDb(t38);
+
         }
         public static void GenerateSubjects()
         {
@@ -116,6 +181,51 @@ namespace schedule
             SubjectRepo.AddToDb(s10);
             Subject s11 = SubjectRepo.CreateSubject("ТІМС", ClassType.Ordinary);
             SubjectRepo.AddToDb(s11);
+            Subject s12 = SubjectRepo.CreateSubject("АРХ. ОБЧ. СИСТ", ClassType.Lecture);
+            SubjectRepo.AddToDb(s12);
+            Subject s13 = SubjectRepo.CreateSubject("АРХ. ОБЧ. СИСТ", ClassType.Computer);
+            SubjectRepo.AddToDb(s13);
+            Subject s14 = SubjectRepo.CreateSubject("АЛГОРИТМИ І СТРУКТУРИ ДАНИХ", ClassType.Lecture);
+            SubjectRepo.AddToDb(s14);
+            Subject s15 = SubjectRepo.CreateSubject("АЛГОРИТМИ І СТРУКТУРИ ДАНИХ", ClassType.Computer);
+            SubjectRepo.AddToDb(s15);
+            Subject s16 = SubjectRepo.CreateSubject("НАВЧАЛЬНА ПРАКТИКА", ClassType.Computer);
+            SubjectRepo.AddToDb(s16);
+            Subject s17 = SubjectRepo.CreateSubject("МАТЕМАТИЧНИЙ АНАЛІЗ", ClassType.Lecture);
+            SubjectRepo.AddToDb(s17);
+            Subject s18 = SubjectRepo.CreateSubject("МАТЕМАТИЧНИЙ АНАЛІЗ", ClassType.Ordinary);
+            SubjectRepo.AddToDb(s18);
+            Subject s19 = SubjectRepo.CreateSubject("ДИСКРЕТНА МАТЕМАТИКА", ClassType.Lecture);
+            SubjectRepo.AddToDb(s19);
+            Subject s20 = SubjectRepo.CreateSubject("ДИСКРЕТНА МАТЕМАТИКА", ClassType.Ordinary);
+            SubjectRepo.AddToDb(s20);
+            Subject s21 = SubjectRepo.CreateSubject("ІСТОРІЯ УКРАЇНИ", ClassType.Lecture);
+            SubjectRepo.AddToDb(s21);
+            Subject s22 = SubjectRepo.CreateSubject("ІСТОРІЯ УКРАЇНИ", ClassType.Ordinary);
+            SubjectRepo.AddToDb(s22);
+            Subject s23 = SubjectRepo.CreateSubject("(ДВ) ПРИКЛАДНЕ ПРОГР.НА NODEJS", ClassType.Computer);
+            SubjectRepo.AddToDb(s23);
+            Subject s24 = SubjectRepo.CreateSubject("СИСТЕМИ ШТУЧНОГО ІНТЕЛЕКТУ", ClassType.Lecture);
+            SubjectRepo.AddToDb(s24);
+            Subject s25 = SubjectRepo.CreateSubject("СИСТЕМИ ШТУЧНОГО ІНТЕЛЕКТУ", ClassType.Computer);
+            SubjectRepo.AddToDb(s25);
+            Subject s26 = SubjectRepo.CreateSubject("(ДВ) ПРОГР. МОБ. ПЛАТФ", ClassType.Computer);
+            SubjectRepo.AddToDb(s26);
+            Subject s27 = SubjectRepo.CreateSubject("Методи оптим", ClassType.Lecture);
+            SubjectRepo.AddToDb(s27);
+            Subject s28 = SubjectRepo.CreateSubject("Методи оптим", ClassType.Computer);
+            SubjectRepo.AddToDb(s28);
+            Subject s29 = SubjectRepo.CreateSubject("(ДВ) ЦИФРОВА.ОБР.ЗОБР.", ClassType.Computer);
+            SubjectRepo.AddToDb(s29);
+            Subject s30 = SubjectRepo.CreateSubject("Програмна інженерія", ClassType.Lecture);
+            SubjectRepo.AddToDb(s30);
+            Subject s31 = SubjectRepo.CreateSubject("Програмна інженерія", ClassType.Computer);
+            SubjectRepo.AddToDb(s31);
+            Subject s32 = SubjectRepo.CreateSubject("МЕТОДИ КОМП’ЮТЕРНИХ ОБЧИСЛЕНЬ", ClassType.Lecture);
+            SubjectRepo.AddToDb(s32);
+            Subject s33 = SubjectRepo.CreateSubject("МЕТОДИ КОМП’ЮТЕРНИХ ОБЧИСЛЕНЬ", ClassType.Computer);
+            SubjectRepo.AddToDb(s33);
+
         }
         public static void GenerateGroupSubjects()
         {
@@ -124,6 +234,24 @@ namespace schedule
             for (int i = 1; i < 4; i++)
             {
                 for (int j = 1; j < 12; j++)
+                {
+                    GroupSubject gs = GroupSubjectRepo.CreateGroupSubject(i, j, 60);
+                    GroupSubjectRepo.AddToDb(gs);
+                }
+            }
+
+            for (int i = 4; i < 7; i++)
+            {
+                for (int j = 12; j < 23; j++)
+                {
+                    GroupSubject gs = GroupSubjectRepo.CreateGroupSubject(i, j, 60);
+                    GroupSubjectRepo.AddToDb(gs);
+                }
+            }
+
+            for (int i = 7; i < 10; i++)
+            {
+                for (int j = 23; j < 34; j++)
                 {
                     GroupSubject gs = GroupSubjectRepo.CreateGroupSubject(i, j, 60);
                     GroupSubjectRepo.AddToDb(gs);
@@ -175,6 +303,70 @@ namespace schedule
             TeacherSubjectRepo.AddToDb(ts20);
             TeacherSubject ts21 = TeacherSubjectRepo.CreateTeacherSubject(6, 9, 300);
             TeacherSubjectRepo.AddToDb(ts21);
+            TeacherSubject ts22 = TeacherSubjectRepo.CreateTeacherSubject(15, 13, 300);
+            TeacherSubjectRepo.AddToDb(ts22);
+            TeacherSubject ts23 = TeacherSubjectRepo.CreateTeacherSubject(16, 20, 300);
+            TeacherSubjectRepo.AddToDb(ts23);
+            TeacherSubject ts24 = TeacherSubjectRepo.CreateTeacherSubject(17, 15, 300);
+            TeacherSubjectRepo.AddToDb(ts24);
+            TeacherSubject ts25 = TeacherSubjectRepo.CreateTeacherSubject(18, 15, 300);
+            TeacherSubjectRepo.AddToDb(ts25);
+            TeacherSubject ts26 = TeacherSubjectRepo.CreateTeacherSubject(19, 18, 300);
+            TeacherSubjectRepo.AddToDb(ts26);
+            TeacherSubject ts27 = TeacherSubjectRepo.CreateTeacherSubject(20, 16, 300);
+            TeacherSubjectRepo.AddToDb(ts27);
+            TeacherSubject ts28 = TeacherSubjectRepo.CreateTeacherSubject(21, 6, 300);
+            TeacherSubjectRepo.AddToDb(ts28);
+            TeacherSubject ts29 = TeacherSubjectRepo.CreateTeacherSubject(21, 16, 300);
+            TeacherSubjectRepo.AddToDb(ts29);
+            TeacherSubject ts30 = TeacherSubjectRepo.CreateTeacherSubject(23, 5, 300);
+            TeacherSubjectRepo.AddToDb(ts30);
+            TeacherSubject ts31 = TeacherSubjectRepo.CreateTeacherSubject(23, 6, 300);
+            TeacherSubjectRepo.AddToDb(ts31);
+            TeacherSubject ts32 = TeacherSubjectRepo.CreateTeacherSubject(25, 19, 300);
+            TeacherSubjectRepo.AddToDb(ts32);
+            TeacherSubject ts33 = TeacherSubjectRepo.CreateTeacherSubject(26, 21, 300);
+            TeacherSubjectRepo.AddToDb(ts33);
+            TeacherSubject ts34 = TeacherSubjectRepo.CreateTeacherSubject(26, 22, 300);
+            TeacherSubjectRepo.AddToDb(ts34);
+            TeacherSubject ts35 = TeacherSubjectRepo.CreateTeacherSubject(27, 22, 300);
+            TeacherSubjectRepo.AddToDb(ts35);
+            TeacherSubject ts36 = TeacherSubjectRepo.CreateTeacherSubject(28, 22, 300);
+            TeacherSubjectRepo.AddToDb(ts36);
+            TeacherSubject ts37 = TeacherSubjectRepo.CreateTeacherSubject(18, 23, 300);
+            TeacherSubjectRepo.AddToDb(ts37);
+            TeacherSubject ts38 = TeacherSubjectRepo.CreateTeacherSubject(29, 23, 300);
+            TeacherSubjectRepo.AddToDb(ts38);
+            TeacherSubject ts39 = TeacherSubjectRepo.CreateTeacherSubject(32, 24, 300);
+            TeacherSubjectRepo.AddToDb(ts39);
+            TeacherSubject ts40 = TeacherSubjectRepo.CreateTeacherSubject(32, 25, 300);
+            TeacherSubjectRepo.AddToDb(ts40);
+            TeacherSubject ts41 = TeacherSubjectRepo.CreateTeacherSubject(16, 25, 300);
+            TeacherSubjectRepo.AddToDb(ts41);
+            TeacherSubject ts42 = TeacherSubjectRepo.CreateTeacherSubject(20, 26, 300);
+            TeacherSubjectRepo.AddToDb(ts42);
+            TeacherSubject ts43 = TeacherSubjectRepo.CreateTeacherSubject(30, 26, 300);
+            TeacherSubjectRepo.AddToDb(ts43);
+            TeacherSubject ts44 = TeacherSubjectRepo.CreateTeacherSubject(36, 27, 300);
+            TeacherSubjectRepo.AddToDb(ts44);
+            TeacherSubject ts45 = TeacherSubjectRepo.CreateTeacherSubject(35, 28, 300);
+            TeacherSubjectRepo.AddToDb(ts45);
+            TeacherSubject ts46 = TeacherSubjectRepo.CreateTeacherSubject(2, 29, 300);
+            TeacherSubjectRepo.AddToDb(ts46);
+            TeacherSubject ts47 = TeacherSubjectRepo.CreateTeacherSubject(23, 30, 300);
+            TeacherSubjectRepo.AddToDb(ts47);
+            TeacherSubject ts48 = TeacherSubjectRepo.CreateTeacherSubject(23, 31, 300);
+            TeacherSubjectRepo.AddToDb(ts48);
+            TeacherSubject ts49 = TeacherSubjectRepo.CreateTeacherSubject(11, 31, 300);
+            TeacherSubjectRepo.AddToDb(ts49);
+            TeacherSubject ts50 = TeacherSubjectRepo.CreateTeacherSubject(21, 31, 300);
+            TeacherSubjectRepo.AddToDb(ts50);
+            TeacherSubject ts51 = TeacherSubjectRepo.CreateTeacherSubject(33, 32, 300);
+            TeacherSubjectRepo.AddToDb(ts51);
+            TeacherSubject ts52 = TeacherSubjectRepo.CreateTeacherSubject(18, 33, 300);
+            TeacherSubjectRepo.AddToDb(ts52);
+            TeacherSubject ts53 = TeacherSubjectRepo.CreateTeacherSubject(34, 33, 300);
+            TeacherSubjectRepo.AddToDb(ts53);
         }
     }
 }
