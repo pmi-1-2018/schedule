@@ -17,8 +17,8 @@ namespace schedule
         static void Main(string[] args)
         {
 
-            Schedule s = new Schedule(ProgramMode.Database);
-            s.CreateSchedule(ProgramMode.Database);
+            //Schedule s = new Schedule(ProgramMode.Database);
+            //s.CreateSchedule(ProgramMode.Database);
             //TestDataGenerator.GenerateGrours();
             //TestDataGenerator.GenerateRooms();
             //TestDataGenerator.GenerateSubjects();

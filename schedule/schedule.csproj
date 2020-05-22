@@ -176,8 +176,15 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Data\" />
+    <Content Include="Data\groups.xml" />
+    <Content Include="Data\group_subjects.xml" />
+    <Content Include="Data\rooms.xml" />
+    <Content Include="Data\subjects.xml" />
+    <Content Include="Data\teachers.xml" />
+    <Content Include="Data\teacher_subjects.xml" />
+    <Content Include="Data\test.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

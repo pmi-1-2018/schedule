@@ -7,8 +7,26 @@
         mc:Ignorable="d"
         Title="Schedule" Height="450" Width="730">
     <Grid>
-        <DataGrid x:Name="dataGridSchedule" HorizontalAlignment="Left" Height="383" Margin="10,10,0,0" VerticalAlignment="Top" Width="525" Grid.ColumnSpan="2" ItemsSource="{Binding Classes}"/>
-        <Label Content="Creating place:" HorizontalAlignment="Left" Margin="567,10,0,0" VerticalAlignment="Top"/>
+        <DataGrid  
+            x:Name="dataGridSchedule"
+            HorizontalAlignment="Left"
+            Height="383"
+            Margin="10,10,0,0"
+            VerticalAlignment="Top"
+            Width="525"
+            Grid.ColumnSpan="2"
+            ItemsSource="{Binding Classes}"
+            AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Group" Binding="{Binding Path=Group.Name}" Width="50" />
+                <DataGridHyperlinkColumn Header="Subject" Binding="{Binding Path=Subject.Name}" Width="150" />
+                <DataGridTextColumn Header="Teacher" Binding="{Binding Path=Teacher.FullName}" Width="150" />
+                <DataGridTextColumn Header="Room" Binding="{Binding Path=Room.Number}" Width="50" />
+                <DataGridTextColumn Header="Day" Binding="{Binding Path=Day}" Width="50" />
+                <DataGridTextColumn Header="Number" Binding="{Binding Path=Number}" Width="60" />
+            </DataGrid.Columns>
+        </DataGrid>
+            <Label Content="Creating place:" HorizontalAlignment="Left" Margin="567,10,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="checkBoxDatabase" Content="Database" HorizontalAlignment="Left" Margin="594,41,0,0" VerticalAlignment="Top" IsChecked="{Binding IsDatabaseChecked}"/>
         <CheckBox x:Name="checkBoxFile" Content="File" HorizontalAlignment="Left" Margin="594,61,0,0" VerticalAlignment="Top" IsChecked="{Binding IsFileChecked}"/>
         <Button x:Name="createButton" Content="Create" HorizontalAlignment="Left" Margin="594,81,0,0" VerticalAlignment="Top" Width="75" Command="{Binding CreateCommand}"/>

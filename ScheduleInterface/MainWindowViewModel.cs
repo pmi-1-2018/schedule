@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using schedule.Entities;
 using schedule.Enums;
+using schedule;
+using System.Windows;
 
 namespace ScheduleInterface
 {
@@ -17,13 +19,15 @@ namespace ScheduleInterface
         public bool IsFileChecked { get; set; }
         public bool RadioButCheck { get; set; } = true;
         private ProgramMode programMode;
+        private Schedule schedule;
         public ICommand CreateCommand { get; set; }
         public ICommand ShowCommand { get; set; }
         public MainWindowViewModel()
         {
             CreateCommand = new DelegateCommand(Create);
             ShowCommand = new DelegateCommand(Show);
-            Classes = new ObservableCollection<Class>();
+            //Classes = new ObservableCollection<Class>();
+            schedule = new Schedule();
         }
         private void SetProgramMode()
         {
@@ -42,11 +46,25 @@ namespace ScheduleInterface
         }
         public void Create(object o)
         {
-
+            SetProgramMode();
+            schedule.CreateSchedule(programMode);
+            MessageBox.Show("Schedule is ready", "Result", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         public void Show(object o)
         {
-
+            if(RadioButCheck && (programMode == ProgramMode.Both || programMode == ProgramMode.Database))
+            {
+                Classes = new ObservableCollection<Class>(schedule.Classes);
+            }
+            else if(!RadioButCheck && programMode == ProgramMode.XML)
+            {
+                schedule.FormClassesByID();
+                Classes = new ObservableCollection<Class>(schedule.Classes);
+            }
+            else
+            {
+                MessageBox.Show("I think you've done something wrong :)", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

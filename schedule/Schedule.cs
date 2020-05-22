@@ -7,9 +7,10 @@ using schedule.Entities;
 using schedule.Repos;
 using schedule.Enums;
 
+
 namespace schedule
 {
-    class Schedule
+    public class Schedule
     {
         public List<Class> ResSchedule { get; set; } = new List<Class>();
         public List<Room> Rooms { get; set; }
@@ -22,17 +23,9 @@ namespace schedule
         public List<Teacher> Teachers { get; set; }
         public List<TeacherSubject> TeacherSubjects { get; set; }
 
-        public Schedule(ProgramMode pm)
+        public Schedule()
         {
-            if(pm == ProgramMode.XML)
-            {
-                this.GetDataFromXML();
-            }
-            else
-            {
-                this.GetDataFromDb();
-            }
-            this.CreatingClasses();
+
         }
         public void CreatingClasses()
         {
@@ -48,9 +41,9 @@ namespace schedule
             {
                 List<long?> SubjectTeacher = new List<long?>();
                 List<long?> SubjectGroup = new List<long?>();
-                foreach(var teacher in TeacherSubjects)
+                foreach (var teacher in TeacherSubjects)
                 {
-                    if(subj.Id == teacher.SubjectId)
+                    if (subj.Id == teacher.SubjectId)
                     {
                         SubjectTeacher.Add(teacher.TeacherId);
                     }
@@ -63,7 +56,7 @@ namespace schedule
                     }
                 }
                 int i = 0;
-                foreach(var Group in SubjectGroup)
+                foreach (var Group in SubjectGroup)
                 {
                     Classes.Add(ClassRepo.CreateClass(0, (long)Group, subj.Id, (long)SubjectTeacher[i], DayOfWeek.Sunday, 0));
                     i++;
@@ -74,12 +67,12 @@ namespace schedule
 
         public void Dividing(List<Class> FirstGroup, List<Class> SecondGroup)
         {
-            
-            foreach(var item in Classes)
+
+            foreach (var item in Classes)
             {
                 string GroupName = DictionaryOfGroups[item.GroupId].Name;
                 long Course = Convert.ToInt64(GroupName[GroupName.Length - 2]) - 48;
-                if (Course<=3)
+                if (Course <= 3)
                 {
                     FirstGroup.Add(item);
                 }
@@ -92,6 +85,15 @@ namespace schedule
 
         public void CreateSchedule(ProgramMode pm)
         {
+            if (pm == ProgramMode.XML)
+            {
+                this.GetDataFromXML();
+            }
+            else
+            {
+                this.GetDataFromDb();
+            }
+            this.CreatingClasses();
             List<Class> FirstGroup = new List<Class>();
             List<Class> SecondGroup = new List<Class>();
             this.Dividing(FirstGroup, SecondGroup);
@@ -99,7 +101,7 @@ namespace schedule
             this.create(0, FirstGroup);
             this.create(3, SecondGroup);
 
-            if(pm == ProgramMode.Database)
+            if (pm == ProgramMode.Database)
             {
                 ClassRepo.AddToDb(ResSchedule);
             }
@@ -146,7 +148,7 @@ namespace schedule
                 if (generate(Group, n, CalculatedClasses))
                     break;
             }
-            foreach(var cl in CalculatedClasses)
+            foreach (var cl in CalculatedClasses)
             {
                 cl.Number += DayShuffle;
                 ResSchedule.Add(cl);
@@ -193,11 +195,11 @@ namespace schedule
                 {
                     if (CalculatedClasses[j].GroupId == c[i].GroupId || CalculatedClasses[j].RoomId == c[i].RoomId || CalculatedClasses[j].TeacherId == c[i].TeacherId)
                     {
-                        Possible &= (~(1 << n - 1 - (((int)CalculatedClasses[j].Day-1) * 3 + (int)CalculatedClasses[j].Number - 1)));
+                        Possible &= (~(1 << n - 1 - (((int)CalculatedClasses[j].Day - 1) * 3 + (int)CalculatedClasses[j].Number - 1)));
                     }
                 }
                 //Possible &= (2 << n+1) - 1;
-                if(Possible == 0)
+                if (Possible == 0)
                 {
                     CalculatedClasses.Clear();
                     return false;
@@ -207,7 +209,7 @@ namespace schedule
                     Console.WriteLine($"Test:{i}");
                     int count = countSetBits(Possible);
                     Console.WriteLine(count);
-                    int index = rnd.Next(count-1)+1;
+                    int index = rnd.Next(count - 1) + 1;
                     Console.WriteLine(index);
 
                     int fuckThisShit = Possible;
@@ -217,7 +219,7 @@ namespace schedule
                         Possible >>= 1;
                     }
                     Console.WriteLine();
-                    index = findIndex(fuckThisShit, index-1);
+                    index = findIndex(fuckThisShit, index - 1);
                     Console.WriteLine(index);
                     c[i].Day = (DayOfWeek)(index / 3 + 1);
                     c[i].Number = (long?)index % 3 + 1;
@@ -243,7 +245,7 @@ namespace schedule
             while (k > 0)
             {
                 index++;
-                if((n & 1) == 1)
+                if ((n & 1) == 1)
                 {
                     k--;
                 }
@@ -269,28 +271,15 @@ namespace schedule
             TeacherSubjects = TeacherSubjectRepo.GetTeacherSubjectsFromDb();
             Subjects = SubjectRepo.GetSubjectsFromDb();
         }
-
-        public void GenerateTestData()
+        public void FormClassesByID()
         {
-            Class[] c = new Class[100];
-            for (uint i = 0; i < 10; i++)
+            for (int i = 0; i < ResSchedule.Count; i++)
             {
-                for (uint j = 0; j < 10; j++)
-                {
-                    c[i * 10 + j] = ClassRepo.CreateClass(i * 10 + j, 0, j, i, i, DayOfWeek.Sunday, 0);
-                }
+                ResSchedule[i].Group = Groups.SingleOrDefault(g => g.Id == ResSchedule[i].GroupId);
+                ResSchedule[i].Teacher = Teachers.SingleOrDefault(t => t.Id == ResSchedule[i].TeacherId);
+                ResSchedule[i].Room = Rooms.SingleOrDefault(r => r.Id == ResSchedule[i].RoomId);
+                ResSchedule[i].Subject = Subjects.SingleOrDefault(s => s.Id == ResSchedule[i].SubjectId);
             }
-            ClassRepo.SerializeArray("class.xml", c);
-
-            ClassType[] classType = { ClassType.Lecture, ClassType.Computer, ClassType.Ordinary };
-
-
-            Room[] r = new Room[15];
-            for (uint i = 1; i <= 15; i++)
-            {
-                r[i - 1] = RoomRepo.CreateRoom(i, classType[i % 3], i, 25);
-            }
-            RoomRepo.SerializeArray("room.xml", r);
         }
     }
 }
