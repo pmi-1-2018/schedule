@@ -23,9 +23,6 @@ namespace schedule
         public List<Teacher> Teachers { get; set; }
         public List<TeacherSubject> TeacherSubjects { get; set; }
 
-        public Schedule()
-        {
-        }
         public void CreatingClasses()
         {
             foreach (var group in Groups)
@@ -117,7 +114,25 @@ namespace schedule
             }
         }
 
-
+        public List<Room> GetFreeRooms(DayOfWeek d, int numb)
+        {
+            HashSet<long> hs = new HashSet<long>();
+            foreach (Room r in Rooms) { hs.Add(r.Id); }
+            foreach (Class c in ResSchedule)
+            {
+                if(c.Day == d && c.Number == numb)
+                {
+                    hs.Remove(c.RoomId);
+                }
+            }
+            List<Room> rooms = new List<Room>();
+            foreach (Room r in Rooms)
+            {
+                if (hs.Contains(r.Id))
+                    rooms.Add(r);
+            }
+            return rooms;
+        }
         private void create(int DayShuffle, List<Class> Group)
         {
             List<Room> LectureRoom = new List<Room>();
